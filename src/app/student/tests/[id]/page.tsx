@@ -8,6 +8,7 @@ import { Loading, ErrorState } from "@/components/ui/States";
 import { toast } from "@/components/ui/Toast";
 import { Toaster } from "@/components/ui/Toast";
 import { Clock, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Send, Image as ImageIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function ExamPage() {
   const { id } = useParams<{ id: string }>();
@@ -66,6 +67,11 @@ export default function ExamPage() {
     return (
       <div className="mx-auto max-w-3xl">
         <Toaster />
+        <motion.div
+          initial={{ scale: 0.85, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 200, damping: 18 }}
+        >
         <Card strong className="text-center">
           <div className={`mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full ${result.percentage >= 40 ? "bg-emerald-500/15 text-emerald-500" : "bg-rose-500/15 text-rose-500"}`}>
             <span className="text-2xl font-extrabold">{result.percentage}%</span>
@@ -78,6 +84,7 @@ export default function ExamPage() {
             <button className="btn btn-ghost" onClick={() => router.push("/student/tests")}>Back to Tests</button>
           </div>
         </Card>
+        </motion.div>
 
         <Card className="mt-4">
           <h3 className="mb-3 font-bold">Review Answers</h3>
@@ -112,15 +119,32 @@ export default function ExamPage() {
   const answered = Object.keys(answers).length;
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="exam-focus-shell mx-auto max-w-3xl">
       <Toaster />
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h1 className="text-xl font-extrabold">{test.title}</h1>
           <p className="text-sm text-muted">{answered}/{test.questions.length} answered</p>
         </div>
-        <div className={`flex items-center gap-2 rounded-xl px-4 py-2 font-bold ${timeLeft < 60 ? "bg-rose-500/15 text-rose-500" : "glass"}`}>
-          <Clock className="h-4 w-4" /> {mins}:{String(secs).padStart(2, "0")}
+        <div className={`exam-timer-ring flex items-center justify-center font-bold text-sm ${timeLeft < 60 ? "text-rose-500" : ""}`}>
+          <svg width="56" height="56" viewBox="0 0 56 56">
+            <defs>
+              <linearGradient id="timerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#3563ff" />
+                <stop offset="100%" stopColor="#06b6d4" />
+              </linearGradient>
+            </defs>
+            <circle className="exam-timer-track" cx="28" cy="28" r="24" />
+            <circle
+              className="exam-timer-progress"
+              cx="28"
+              cy="28"
+              r="24"
+              strokeDasharray={150.8}
+              strokeDashoffset={150.8 * (1 - timeLeft / (test.durationMin * 60))}
+            />
+          </svg>
+          <span className="absolute">{mins}:{String(secs).padStart(2, "0")}</span>
         </div>
       </div>
 
