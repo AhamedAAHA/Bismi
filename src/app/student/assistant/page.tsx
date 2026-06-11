@@ -5,6 +5,8 @@ import { apiPost } from "@/lib/api";
 import PageHeader from "@/components/dashboard/PageHeader";
 import { Card } from "@/components/ui/Card";
 import { Brain, Send, Sparkles, User } from "lucide-react";
+import ModuleAccent from "@/components/3d/ModuleAccent";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Msg { role: "user" | "ai"; text: string }
 
@@ -39,17 +41,31 @@ export default function AssistantPage() {
   return (
     <div>
       <PageHeader title="AI Study Assistant" subtitle="Your personal tutor — explanations, MCQs and summaries." />
+      <div className="mb-4 grid gap-4 lg:grid-cols-3">
+        <ModuleAccent variant="ai" height={180} className="lg:col-span-1" />
+        <div className="glass card flex items-center justify-center gap-1 p-4 lg:col-span-2">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className="ai-wave-bar" style={{ animationDelay: `${i * 0.08}s` }} />
+          ))}
+        </div>
+      </div>
       <Card className="flex h-[calc(100vh-260px)] min-h-[420px] flex-col p-0">
         <div className="flex-1 space-y-4 overflow-y-auto p-5">
           {messages.map((m, i) => (
-            <div key={i} className={`flex gap-3 ${m.role === "user" ? "flex-row-reverse" : ""}`}>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className={`flex gap-3 ${m.role === "user" ? "flex-row-reverse" : ""}`}
+            >
               <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${m.role === "user" ? "bg-brand-500 text-white" : "bg-gradient-to-br from-accent-400 to-accent-600 text-white"}`}>
                 {m.role === "user" ? <User className="h-5 w-5" /> : <Brain className="h-5 w-5" />}
               </div>
               <div className={`max-w-[75%] whitespace-pre-wrap rounded-2xl px-4 py-2.5 text-sm ${m.role === "user" ? "bg-brand-500 text-white" : "glass"}`}>
                 {m.text}
               </div>
-            </div>
+            </motion.div>
           ))}
           {loading && (
             <div className="flex gap-3">
