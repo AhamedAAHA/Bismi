@@ -1,42 +1,40 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import SceneCanvas from "./SceneCanvas";
 import { SentraCoreField } from "./SentraField";
 
-/** Full-screen ambient 3D background for authenticated and login areas. */
+/**
+ * Hero 3D scene — used as an absolute background inside the landing hero section.
+ * Parent must be: position:relative; overflow:hidden.
+ */
 export default function GlobalScene() {
-  const pathname = usePathname() || "/";
-
-  if (pathname.startsWith("/receipt")) return null;
-  const isLanding = pathname === "/";
-  const fieldScale = isLanding ? 0.58 : 0.72;
-  const fieldSpeed = isLanding ? 0.78 : 1;
-  const fieldPosition: [number, number, number] = isLanding
-    ? [2.15, -0.26, -0.7]
-    : [1.1, -0.2, 0];
-
   return (
-    <SceneCanvas
-      className="global-scene"
-      camera={{ position: [0, 0.2, 6.8], fov: 38 }}
-      interactive={false}
-      opaque={false}
+    <div
+      className="hero-scene"
+      aria-hidden="true"
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: 0,
+        pointerEvents: "none",
+        overflow: "hidden",
+      }}
     >
-      <ambientLight intensity={0.7} />
-      <pointLight
-        position={[3, 4, 4]}
-        intensity={isLanding ? 1.6 : 2.3}
-        color="#67f6ff"
-      />
-      <pointLight
-        position={[-4, -2, 3]}
-        intensity={isLanding ? 0.85 : 1.2}
-        color="#a071ff"
-      />
-      <group position={fieldPosition}>
-        <SentraCoreField scale={fieldScale} speed={fieldSpeed} />
-      </group>
-    </SceneCanvas>
+      <SceneCanvas
+        className=""
+        camera={{ position: [0, 0.2, 6.8], fov: 38 }}
+        interactive={false}
+        opaque={false}
+      >
+        <ambientLight intensity={0.7} />
+        <pointLight position={[3, 4, 4]} intensity={1.6} color="#67f6ff" />
+        <pointLight position={[-4, -2, 3]} intensity={0.85} color="#a071ff" />
+        <group position={[2.15, -0.26, -0.7]}>
+          <SentraCoreField scale={0.58} speed={0.78} />
+        </group>
+      </SceneCanvas>
+    </div>
   );
 }

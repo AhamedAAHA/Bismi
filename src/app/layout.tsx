@@ -1,12 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import SceneRoot from "@/components/SceneRoot";
 
 export const metadata: Metadata = {
-  title: "3D Education Hub – Smart Tuition Management System",
+  title: "Bismi – Smart Tuition Management System",
   description:
     "A modern, professional tuition management system with admin, student and parent portals. Developed by AAHA.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#040914",
 };
 
 export default function RootLayout({
@@ -15,10 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="bg-[#040914]">
       <body className="font-sans">
         <ThemeProvider>
-          <SceneRoot />
           <div className="app-content">{children}</div>
         </ThemeProvider>
       </body>
