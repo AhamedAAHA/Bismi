@@ -6,12 +6,11 @@ import PageHeader from "@/components/dashboard/PageHeader";
 import StatCard from "@/components/ui/StatCard";
 import { Card, SectionTitle } from "@/components/ui/Card";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
-import { currency, formatDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import {
   ClipboardCheck,
   Trophy,
   BookOpen,
-  CreditCard,
   Megaphone,
   Brain,
   FileText,
@@ -73,7 +72,6 @@ export default function StudentDashboard() {
               <Quick href="/student/leaderboard" icon={Trophy} label="Ranking" />
             </div>
           </Card>
-          <StatCard label="Fees Due" value={currency(data.dueAmount)} icon={CreditCard} tone="rose" />
         </div>
       </div>
 
