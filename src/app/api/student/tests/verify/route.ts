@@ -22,9 +22,6 @@ export async function POST(req: NextRequest) {
     return fail("This test is not assigned to your class.");
   }
 
-  const now = new Date();
-  if (now < test.startTime) return fail("This test has not started yet.");
-  if (now > test.endTime) return fail("This test access code has expired.");
   if (test._count.questions === 0) return fail("This test has no questions yet.");
 
   const attempt = await prisma.testAttempt.findUnique({
