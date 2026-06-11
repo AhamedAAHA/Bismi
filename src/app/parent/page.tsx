@@ -37,7 +37,7 @@ export default function ParentDashboard() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-3">
                     <Mini icon={ClipboardCheck} tone="text-emerald-500" label="Attendance" value={`${c.attendancePct}%`} />
                     <Mini icon={BarChart3} tone="text-brand-500" label="Avg Marks" value={`${c.avgMarks}%`} />
                     <Mini icon={BookOpen} tone="text-violet-500" label="Pending HW" value={c.pendingHw} />
@@ -77,10 +77,10 @@ export default function ParentDashboard() {
 
 function Mini({ icon: Icon, tone, label, value }: any) {
   return (
-    <div className="rounded-xl border border-[var(--border)] p-3">
-      <Icon className={`h-5 w-5 ${tone}`} />
-      <p className="mt-1 text-xs text-muted">{label}</p>
-      <p className="text-lg font-bold">{value}</p>
+    <div className="rounded-xl border border-[var(--border)] p-2.5 sm:p-3">
+      <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${tone}`} />
+      <p className="mt-1 text-[10px] text-muted sm:text-xs">{label}</p>
+      <p className="text-base font-bold sm:text-lg">{value}</p>
     </div>
   );
 }

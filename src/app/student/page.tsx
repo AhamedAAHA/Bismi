@@ -37,7 +37,7 @@ export default function StudentDashboard() {
     <div>
       <PageHeader title={`Welcome, ${data.name.split(" ")[0]}! 👋`} subtitle={`${data.studentCode} • ${data.className} • Today: ${data.todayStatus}`} />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <StatCard label="Attendance" value={`${data.attendancePct}%`} icon={ClipboardCheck} tone="green" />
         <StatCard label="Avg Score" value={`${data.avgScore}%`} icon={Trophy} tone="amber" />
         <StatCard label="Pending HW" value={data.pendingHw} icon={BookOpen} tone="violet" />
@@ -98,7 +98,7 @@ export default function StudentDashboard() {
 
 function Quick({ href, icon: Icon, label }: any) {
   return (
-    <Link href={href} className="flex flex-col items-center gap-1.5 rounded-xl border border-[var(--border)] p-3 text-center transition hover:border-brand-500 hover:text-brand-500">
+    <Link href={href} className="flex min-h-[64px] flex-col items-center justify-center gap-1.5 rounded-xl border border-[var(--border)] p-3 text-center transition hover:border-brand-500 hover:text-brand-500">
       <Icon className="h-5 w-5" />
       <span className="text-xs font-medium">{label}</span>
     </Link>

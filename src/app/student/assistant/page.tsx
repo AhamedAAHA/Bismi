@@ -41,15 +41,15 @@ export default function AssistantPage() {
   return (
     <div>
       <PageHeader title="AI Study Assistant" subtitle="Your personal tutor — explanations, MCQs and summaries." />
-      <div className="mb-4 grid gap-4 lg:grid-cols-3">
-        <ModuleAccent variant="ai" height={180} className="lg:col-span-1" />
+      <div className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <ModuleAccent variant="ai" height={140} className="lg:col-span-1" />
         <div className="glass card flex items-center justify-center gap-1 p-4 lg:col-span-2">
-          {Array.from({ length: 12 }).map((_, i) => (
+          {Array.from({ length: 10 }).map((_, i) => (
             <div key={i} className="ai-wave-bar" style={{ animationDelay: `${i * 0.08}s` }} />
           ))}
         </div>
       </div>
-      <Card className="flex h-[calc(100vh-260px)] min-h-[420px] flex-col p-0">
+      <Card className="flex h-[calc(100svh-280px)] min-h-[360px] flex-col p-0 sm:h-[calc(100vh-260px)] sm:min-h-[420px]">
         <div className="flex-1 space-y-4 overflow-y-auto p-5">
           {messages.map((m, i) => (
             <motion.div

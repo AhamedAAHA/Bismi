@@ -97,7 +97,7 @@ export default function DashboardShell({
   );
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       <Toaster />
 
       {/* Desktop sidebar */}
@@ -138,38 +138,39 @@ export default function DashboardShell({
       {/* Main */}
       <div className="lg:pl-72">
         {/* Navbar */}
-        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#050914]/78 px-4 py-3 backdrop-blur-2xl sm:px-6">
+        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#050914]/80 px-4 py-3 backdrop-blur-2xl sm:px-6">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] lg:hidden"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
-            <div className="hidden items-center gap-1.5 text-sm text-muted sm:flex">
-              <span>{roleLabel}</span>
-              <ChevronRight className="h-4 w-4" />
-              <span className="font-semibold text-[var(--text)]">{current.label}</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <div className="flex min-w-0 items-center gap-2.5 rounded-full border border-[var(--border)] bg-white/[0.03] px-2.5 py-1.5">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-400 to-brand-500 text-xs font-extrabold text-[#03111f]">
-                {initials(userName)}
-              </div>
-              <div className="hidden leading-tight sm:block">
-                <p className="text-sm font-semibold">{userName}</p>
-                <p className="text-[11px] text-muted">{roleLabel}</p>
+            <div className="flex min-w-0 items-center gap-3">
+              <button
+                onClick={() => setOpen(true)}
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] lg:hidden"
+                aria-label="Open navigation"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+              <div className="hidden min-w-0 items-center gap-1.5 text-sm text-muted sm:flex">
+                <span className="shrink-0">{roleLabel}</span>
+                <ChevronRight className="h-4 w-4 shrink-0" />
+                <span className="truncate font-semibold text-[var(--text)]">{current.label}</span>
               </div>
             </div>
-          </div>
+            <div className="flex shrink-0 items-center gap-3">
+              <ThemeToggle />
+              <div className="flex min-w-0 items-center gap-2.5 rounded-full border border-[var(--border)] bg-white/[0.03] px-2.5 py-1.5">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-400 to-brand-500 text-xs font-extrabold text-[#03111f]">
+                  {initials(userName)}
+                </div>
+                <div className="hidden leading-tight sm:block">
+                  <p className="max-w-[120px] truncate text-sm font-semibold">{userName}</p>
+                  <p className="text-[11px] text-muted">{roleLabel}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </header>
 
         {/* Page content */}
-        <main className="mx-auto min-h-[calc(100vh-130px)] max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
+        <main className="mx-auto w-full max-w-7xl px-4 py-5 sm:px-6 lg:py-8">
           <motion.div
             key={pathname}
             initial={{ opacity: 0, y: 12 }}

@@ -24,20 +24,20 @@ export default function Leaderboard() {
         <Card><EmptyState icon={Trophy} title="No rankings yet" /></Card>
       ) : (
         <>
-          <div className="mb-4 grid grid-cols-3 gap-3">
+          <div className="mb-4 grid grid-cols-3 gap-2 sm:gap-3">
             {[1, 0, 2].map((pos) => {
               const s = top3[pos];
               if (!s) return <div key={pos} />;
               const colors = ["from-amber-400 to-yellow-500", "from-slate-300 to-slate-400", "from-orange-400 to-amber-600"];
               const heights = ["", "mt-0", "mt-6"];
               return (
-                <Card key={pos} className={`text-center ${pos === 0 ? "ring-2 ring-amber-400 podium-gold" : pos === 1 ? "podium-silver" : "podium-bronze"} ${heights[pos]}`}>
-                  <div className={`mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br ${colors[pos]} text-white shadow-glow`}>
-                    {pos === 0 ? <Trophy className="h-7 w-7" /> : <Medal className="h-6 w-6" />}
+                <Card key={pos} className={`p-3 text-center sm:p-4 ${pos === 0 ? "ring-2 ring-amber-400 podium-gold" : pos === 1 ? "podium-silver" : "podium-bronze"} ${heights[pos]}`}>
+                  <div className={`mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br sm:h-14 sm:w-14 ${colors[pos]} text-white shadow-glow`}>
+                    {pos === 0 ? <Trophy className="h-5 w-5 sm:h-7 sm:w-7" /> : <Medal className="h-4 w-4 sm:h-6 sm:w-6" />}
                   </div>
-                  <p className="font-bold">{s.name}</p>
-                  <p className="text-xs text-muted">#{s.rank} • {s.stars} ⭐</p>
-                  <p className="mt-1 text-sm font-semibold text-brand-500">{s.avgMarks}% avg</p>
+                  <p className="truncate text-xs font-bold sm:text-sm">{s.name}</p>
+                  <p className="text-[10px] text-muted sm:text-xs">#{s.rank} • {s.stars} ⭐</p>
+                  <p className="mt-1 text-xs font-semibold text-brand-500 sm:text-sm">{s.avgMarks}% avg</p>
                 </Card>
               );
             })}

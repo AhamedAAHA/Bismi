@@ -40,7 +40,7 @@ export default function SceneCanvas({
   if (!canRender) return null;
 
   return (
-    <div className={`scene-canvas ${className}`} aria-hidden="true">
+    <div className={`scene-canvas-inner ${className}`} aria-hidden="true" style={{ width: "100%", height: "100%", overflow: "hidden" }}>
       <Canvas
         dpr={dpr as [number, number]}
         camera={camera}

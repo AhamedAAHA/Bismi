@@ -2,6 +2,7 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
+import OrbitalScene from "@/components/3d/OrbitalScene";
 import { ArrowLeft } from "lucide-react";
 
 export default function LoginLayout({
@@ -10,8 +11,11 @@ export default function LoginLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen flex-col">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5">
+    <div className="relative flex min-h-screen flex-col overflow-hidden">
+      {/* Orbital background — scrolls with page */}
+      <OrbitalScene opacity={0.5} />
+
+      <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5">
         <Link href="/">
           <Logo />
         </Link>
@@ -22,7 +26,7 @@ export default function LoginLayout({
           <ThemeToggle />
         </div>
       </header>
-      <main className="flex flex-1 items-center justify-center px-5 py-8">
+      <main className="relative z-10 flex flex-1 items-center justify-center px-5 py-8">
         {children}
       </main>
       <Footer />

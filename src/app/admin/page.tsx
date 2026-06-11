@@ -41,7 +41,7 @@ export default function AdminDashboard() {
         subtitle="Overview of your tuition center at a glance."
       />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <StatCard label="Students" value={data.students} icon={Users} tone="blue" />
         <StatCard label="Parents" value={data.parents} icon={UserCog} tone="violet" />
         <StatCard label="Classes" value={data.classes} icon={School} tone="cyan" />

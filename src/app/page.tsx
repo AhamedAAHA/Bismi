@@ -1,6 +1,10 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
+import OrbitalScene from "@/components/3d/OrbitalScene";
 import {
   ArrowRight,
   BadgeCheck,
@@ -20,6 +24,8 @@ import {
   Trophy,
   Users,
 } from "lucide-react";
+
+const GlobalScene = dynamic(() => import("@/components/3d/GlobalScene"), { ssr: false });
 
 const nav = [
   { href: "#platform", label: "Platform" },
@@ -61,8 +67,9 @@ const portals = [
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <header className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5">
+    <div className="relative min-h-screen overflow-x-hidden">
+      {/* ── Navbar ── */}
+      <header className="relative z-20 mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5">
         <Logo />
         <nav className="hidden items-center gap-8 text-xs font-semibold text-muted md:flex">
           {nav.map((item) => (
@@ -79,16 +86,25 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-5">
-        <section
-          id="platform"
-          className="grid items-center gap-10 pb-10 pt-10 lg:min-h-[calc(100vh-92px)] lg:grid-cols-[0.92fr_1.08fr]"
+      {/* ── Hero section with inline GlobalScene ── */}
+      <section
+        id="platform"
+        className="relative overflow-hidden"
+        style={{ minHeight: "calc(100vh - 80px)" }}
+      >
+        {/* 3D scene as absolute background — scrolls with section */}
+        <GlobalScene />
+
+        {/* Hero content — above scene */}
+        <div
+          className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 pb-14 pt-10 lg:grid-cols-[0.92fr_1.08fr]"
+          style={{ minHeight: "calc(100vh - 80px)" }}
         >
           <div className="fade-up max-w-2xl">
             <span className="badge badge-blue mb-5 border border-accent-400/20 bg-accent-400/10">
               <Sparkles className="h-3.5 w-3.5" /> Tuition management command center
             </span>
-            <h1 className="max-w-3xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl">
               Run attendance, tests, fees and parent updates from one workspace.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-muted">
@@ -181,33 +197,45 @@ export default function LandingPage() {
               <span>Mathematics with Mr. Ravi</span>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="grid gap-3 pb-10 sm:grid-cols-3">
-          {features.map((feature) => (
-            <div key={feature.title} className="glass card p-4">
-              <feature.icon className="h-5 w-5 text-accent-400" />
-              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.24em] text-muted">
-                {feature.title}
-              </p>
-              <h2 className="mt-1 text-lg font-extrabold text-white">{feature.desc}</h2>
-            </div>
-          ))}
-        </section>
+      {/* ── Features strip ── */}
+      <section className="relative overflow-hidden">
+        <OrbitalScene opacity={0.3} />
+        <div className="relative z-10 mx-auto max-w-7xl px-5 pb-10">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {features.map((feature) => (
+              <div key={feature.title} className="glass card p-4">
+                <feature.icon className="h-5 w-5 text-accent-400" />
+                <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.24em] text-muted">
+                  {feature.title}
+                </p>
+                <h2 className="mt-1 text-lg font-extrabold text-white">{feature.desc}</h2>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <section id="services" className="py-14">
+      {/* ── Services section ── */}
+      <section id="services" className="relative overflow-hidden py-14">
+        <OrbitalScene opacity={0.45} />
+        <div className="relative z-10 mx-auto max-w-7xl px-5">
           <div className="mb-7 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-accent-400">
                 Services
               </p>
-              <h2 className="mt-2 text-3xl font-black tracking-tight text-white">Everything runs from one console</h2>
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-white">
+                Everything runs from one console
+              </h2>
             </div>
             <Link href="/login" className="btn btn-ghost w-fit">
               Open portals <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {services.map((service) => (
               <div key={service.title} className="glass card min-h-[180px] p-5">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-accent-400/20 bg-accent-400/10 text-accent-400">
@@ -218,9 +246,13 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="portals" className="pb-16 pt-4">
+      {/* ── Portals section ── */}
+      <section id="portals" className="relative overflow-hidden pb-16 pt-4">
+        <OrbitalScene opacity={0.5} />
+        <div className="relative z-10 mx-auto max-w-7xl px-5">
           <div className="grid gap-4 md:grid-cols-3">
             {portals.map((portal) => (
               <Link key={portal.href} href={portal.href} className="glass-strong card group p-5">
@@ -235,8 +267,8 @@ export default function LandingPage() {
               </Link>
             ))}
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
     </div>
   );
 }
