@@ -11,11 +11,14 @@ import { StatusBadge } from "@/components/ui/Badge";
 import { toast } from "@/components/ui/Toast";
 import { formatDate } from "@/lib/utils";
 import { ClipboardCheck, CheckCircle2, Clock, XCircle, QrCode } from "lucide-react";
+import ModuleAccent from "@/components/3d/ModuleAccent";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function StudentAttendance() {
   const { data, loading, error, refetch } = useFetch<any>("/api/student/attendance");
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
+  const [scanSuccess, setScanSuccess] = useState(false);
 
   async function checkIn() {
     if (!code.trim()) return toast.error("Enter the QR code shown by your tuition center.");
@@ -23,6 +26,8 @@ export default function StudentAttendance() {
     const res = await apiPost("/api/student/qr", { code });
     setBusy(false);
     if (!res.ok) return toast.error(res.error!);
+    setScanSuccess(true);
+    window.setTimeout(() => setScanSuccess(false), 1600);
     toast.success(res.data.action === "checkout" ? `Checked out at ${res.data.time}` : `Checked in at ${res.data.time} (${res.data.status})`);
     setCode(""); refetch();
   }
@@ -35,6 +40,20 @@ export default function StudentAttendance() {
   return (
     <div>
       <PageHeader title="My Attendance" subtitle="View your attendance history and check in with the daily QR code." />
+      <div className="relative mb-4">
+        <ModuleAccent variant="attendance" height={160} />
+        <AnimatePresence>
+          {scanSuccess && (
+            <motion.div
+              className="scan-success-pulse"
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+            />
+          )}
+        </AnimatePresence>
+      </div>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <StatCard label="Attendance %" value={`${s.percentage}%`} icon={ClipboardCheck} tone="green" />
