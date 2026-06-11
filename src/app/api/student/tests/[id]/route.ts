@@ -14,9 +14,9 @@ export async function GET(_: NextRequest, { params }: { params: { id: string } }
   });
   if (!test || !test.published) return fail("Test not found.", 404);
 
-  const now = new Date();
-  if (now < test.startTime) return fail("This test has not started yet.");
-  if (now > test.endTime) return fail("This test has expired.");
+  if (test.classId && student.classId && test.classId !== student.classId) {
+    return fail("This test is not assigned to your class.");
+  }
 
   const existing = await prisma.testAttempt.findUnique({
     where: { testId_studentId: { testId: test.id, studentId: student.id } },
