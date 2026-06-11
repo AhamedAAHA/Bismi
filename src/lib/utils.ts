@@ -35,9 +35,9 @@ export function formatDateTime(input?: string | Date | null): string {
 }
 
 export function currency(n: number): string {
-  return new Intl.NumberFormat("en-IN", {
+  return new Intl.NumberFormat("en-LK", {
     style: "currency",
-    currency: "INR",
+    currency: "LKR",
     maximumFractionDigits: 0,
   }).format(n || 0);
 }
