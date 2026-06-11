@@ -6,7 +6,7 @@ import StatCard from "@/components/ui/StatCard";
 import { Card, SectionTitle } from "@/components/ui/Card";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import { StatusBadge } from "@/components/ui/Badge";
-import { currency, formatDateTime } from "@/lib/utils";
+import { formatDateTime } from "@/lib/utils";
 import {
   Users,
   UserCog,
@@ -15,7 +15,6 @@ import {
   CheckCircle2,
   Clock,
   XCircle,
-  CreditCard,
   PlaneTakeoff,
   Mail,
 } from "lucide-react";
@@ -82,10 +81,7 @@ export default function AdminDashboard() {
               <Row icon={XCircle} tone="text-rose-500" label="Absent" value={data.today.absent} />
             </div>
           </Card>
-          <div className="grid grid-cols-2 gap-4">
-            <StatCard label="Due Fees" value={currency(data.dueAmount)} icon={CreditCard} tone="rose" />
-            <StatCard label="Leave Req." value={data.pendingLeave} icon={PlaneTakeoff} tone="amber" />
-          </div>
+          <StatCard label="Leave Req." value={data.pendingLeave} icon={PlaneTakeoff} tone="amber" />
         </div>
       </div>
 
