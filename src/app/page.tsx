@@ -8,13 +8,9 @@ import OrbitalScene from "@/components/3d/OrbitalScene";
 import {
   ArrowRight,
   BadgeCheck,
-  BarChart3,
-  Bell,
   Brain,
   CalendarDays,
-  CheckCircle2,
   ClipboardCheck,
-  Clock,
   FileText,
   GraduationCap,
   Mail,
@@ -31,18 +27,6 @@ const nav = [
   { href: "#platform", label: "Platform" },
   { href: "#services", label: "Services" },
   { href: "#portals", label: "Portals" },
-];
-
-const metrics = [
-  { label: "Attendance", value: "94%", tone: "text-emerald-300" },
-  { label: "Avg. Score", value: "86%", tone: "text-accent-400" },
-  { label: "Pending HW", value: "12", tone: "text-amber-300" },
-];
-
-const operations = [
-  { icon: CheckCircle2, title: "QR attendance synced", meta: "Grade 10A - 08:55 AM" },
-  { icon: BarChart3, title: "Science quiz results ready", meta: "32 submissions graded" },
-  { icon: Bell, title: "Parent alerts prepared", meta: "5 absence notices queued" },
 ];
 
 const features = [
@@ -90,29 +74,25 @@ export default function LandingPage() {
       <section
         id="platform"
         className="relative overflow-hidden"
-        style={{ minHeight: "calc(100vh - 80px)" }}
       >
         {/* 3D scene as absolute background — scrolls with section */}
         <GlobalScene />
 
         {/* Hero content — above scene */}
-        <div
-          className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 pb-14 pt-10 lg:grid-cols-[0.92fr_1.08fr]"
-          style={{ minHeight: "calc(100vh - 80px)" }}
-        >
-          <div className="fade-up max-w-2xl">
-            <span className="badge badge-blue mb-5 border border-accent-400/20 bg-accent-400/10">
+        <div className="relative z-10 mx-auto max-w-3xl px-5 pb-20 pt-14 text-center sm:pb-24 sm:pt-16">
+          <div className="fade-up">
+            <span className="badge badge-blue mb-5 inline-flex border border-accent-400/20 bg-accent-400/10">
               <Sparkles className="h-3.5 w-3.5" /> Tuition management command center
             </span>
-            <h1 className="max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-6xl">
               Run attendance, tests, fees and parent updates from one workspace.
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-muted">
+            <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-muted">
               Bismi gives tuition centers a polished operating system for
               daily classes, student progress, homework, receipts and parent
               communication.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link href="/login" className="btn btn-primary">
                 Launch workspace <ArrowRight className="h-4 w-4" />
               </Link>
@@ -121,89 +101,13 @@ export default function LandingPage() {
               </Link>
             </div>
           </div>
-
-          <div className="glass-strong card relative overflow-hidden p-4 sm:p-6">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-400/70 to-transparent" />
-            <div className="flex flex-col justify-between gap-4 border-b border-[var(--border)] pb-5 sm:flex-row sm:items-center">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-accent-400">
-                  Live Operations
-                </p>
-                <h2 className="mt-2 text-2xl font-black tracking-tight text-white">
-                  Today&apos;s center overview
-                </h2>
-              </div>
-              <div className="flex w-fit items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5 text-xs font-bold text-emerald-300">
-                <span className="h-2 w-2 rounded-full bg-emerald-300" />
-                Live
-              </div>
-            </div>
-
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {metrics.map((metric) => (
-                <div key={metric.label} className="rounded-2xl border border-[var(--border)] bg-white/[0.035] p-4">
-                  <p className="text-xs text-muted">{metric.label}</p>
-                  <p className={`mt-2 text-3xl font-black ${metric.tone}`}>{metric.value}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_0.86fr]">
-              <div className="rounded-2xl border border-[var(--border)] bg-[#071123]/70 p-4">
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <h3 className="font-extrabold text-white">Class workload</h3>
-                  <span className="text-xs text-muted">Updated now</span>
-                </div>
-                {[
-                  ["Grade 10A", "88%"],
-                  ["Grade 9A", "72%"],
-                  ["Grade 8B", "64%"],
-                ].map(([label, value]) => (
-                  <div key={label} className="mb-4 last:mb-0">
-                    <div className="mb-2 flex items-center justify-between text-xs">
-                      <span className="font-semibold text-white">{label}</span>
-                      <span className="text-muted">{value}</span>
-                    </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-accent-400 to-brand-500"
-                        style={{ width: value }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-3">
-                {operations.map((item) => (
-                  <div key={item.title} className="flex gap-3 rounded-2xl border border-[var(--border)] bg-white/[0.035] p-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-400/10 text-accent-400">
-                      <item.icon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-bold text-white">{item.title}</p>
-                      <p className="mt-0.5 text-xs text-muted">{item.meta}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border border-[var(--border)] bg-white/[0.035] p-4 text-sm text-muted">
-              <Clock className="h-5 w-5 text-accent-400" />
-              <span>Next class starts at</span>
-              <b className="text-white">04:30 PM</b>
-              <span className="hidden sm:inline">-</span>
-              <span>Mathematics with Mr. Ravi</span>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ── Features strip ── */}
       <section className="relative overflow-hidden">
         <OrbitalScene opacity={0.3} />
-        <div className="relative z-10 mx-auto max-w-7xl px-5 pb-10">
+        <div className="relative z-10 mx-auto max-w-7xl px-5 py-10">
           <div className="grid gap-3 sm:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.title} className="glass card p-4">
