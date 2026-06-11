@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import { ReactNode, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Modal({
   open,
@@ -24,33 +25,45 @@ export default function Modal({
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  if (!open) return null;
-
   const width =
     size === "sm" ? "max-w-md" : size === "lg" ? "max-w-3xl" : "max-w-xl";
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-start justify-center overflow-y-auto bg-black/40 p-4 backdrop-blur-sm">
-      <div
-        className={`glass-strong card fade-up my-8 w-full ${width} p-0`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center justify-between border-b border-[var(--border)] p-4">
-          <h3 className="text-lg font-bold">{title}</h3>
-          <button
-            onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-rose-500/10 hover:text-rose-500"
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[90] flex items-start justify-center overflow-y-auto bg-black/40 p-4 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <motion.div
+            className={`glass-strong card my-8 w-full ${width} p-0`}
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 380, damping: 28 }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-        <div className="max-h-[70vh] overflow-y-auto p-5">{children}</div>
-        {footer && (
-          <div className="flex justify-end gap-2 border-t border-[var(--border)] p-4">
-            {footer}
-          </div>
-        )}
-      </div>
-    </div>
+            <div className="flex items-center justify-between border-b border-[var(--border)] p-4">
+              <h3 className="text-lg font-bold">{title}</h3>
+              <button
+                onClick={onClose}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-rose-500/10 hover:text-rose-500"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="max-h-[70vh] overflow-y-auto p-5">{children}</div>
+            {footer && (
+              <div className="flex justify-end gap-2 border-t border-[var(--border)] p-4">
+                {footer}
+              </div>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
