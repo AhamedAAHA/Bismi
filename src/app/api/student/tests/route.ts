@@ -19,13 +19,10 @@ export async function GET() {
     orderBy: { startTime: "desc" },
   });
 
-  const now = new Date();
   const data = tests.map((t) => {
     const attempt = t.attempts[0];
-    let state: "UPCOMING" | "ACTIVE" | "EXPIRED" | "DONE" = "ACTIVE";
+    let state: "ACTIVE" | "DONE" = "ACTIVE";
     if (attempt?.submitted) state = "DONE";
-    else if (now < t.startTime) state = "UPCOMING";
-    else if (now > t.endTime) state = "EXPIRED";
     return {
       id: t.id,
       title: t.title,
