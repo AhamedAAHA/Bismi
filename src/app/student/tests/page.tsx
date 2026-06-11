@@ -8,8 +8,7 @@ import PageHeader from "@/components/dashboard/PageHeader";
 import { Card, SectionTitle } from "@/components/ui/Card";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import { toast } from "@/components/ui/Toast";
-import { formatDateTime } from "@/lib/utils";
-import { FileText, KeyRound, Clock, CheckCircle2, Play } from "lucide-react";
+import { FileText, KeyRound, CheckCircle2, Play } from "lucide-react";
 
 export default function StudentTests() {
   const router = useRouter();
@@ -52,13 +51,11 @@ export default function StudentTests() {
               <div className="mb-2 flex items-start justify-between">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10 text-brand-500"><FileText className="h-5 w-5" /></div>
                 {t.state === "ACTIVE" && <span className="badge badge-green">Active</span>}
-                {t.state === "UPCOMING" && <span className="badge badge-amber">Upcoming</span>}
-                {t.state === "EXPIRED" && <span className="badge badge-gray">Expired</span>}
                 {t.state === "DONE" && <span className="badge badge-blue">Completed</span>}
               </div>
               <h3 className="font-semibold">{t.title}</h3>
               <p className="text-sm text-muted">{t.subject || "General"} • {t.questionCount} Qs • {t.durationMin} min</p>
-              <p className="mt-1 text-xs text-muted flex items-center gap-1"><Clock className="h-3 w-3" /> Until {formatDateTime(t.endTime)}</p>
+              <p className="mt-1 text-xs text-muted">Open enrollment - start whenever you are ready.</p>
 
               {t.state === "DONE" ? (
                 <div className="mt-3 flex items-center gap-2 rounded-xl bg-emerald-500/10 px-3 py-2 text-sm text-emerald-600">
@@ -67,7 +64,7 @@ export default function StudentTests() {
               ) : t.state === "ACTIVE" ? (
                 <button className="btn btn-primary mt-3 w-full" onClick={() => router.push(`/student/tests/${t.id}`)}><Play className="h-4 w-4" /> Start Test</button>
               ) : (
-                <button className="btn btn-ghost mt-3 w-full" disabled>{t.state === "UPCOMING" ? "Not started yet" : "Expired"}</button>
+                null
               )}
             </Card>
           ))}
