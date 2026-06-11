@@ -9,6 +9,7 @@ import { Card, SectionTitle } from "@/components/ui/Card";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import { toast } from "@/components/ui/Toast";
 import { FileText, KeyRound, CheckCircle2, Play } from "lucide-react";
+import ModuleAccent from "@/components/3d/ModuleAccent";
 
 export default function StudentTests() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function StudentTests() {
   return (
     <div>
       <PageHeader title="Online Tests" subtitle="Enter a test access code to begin, or pick an available test." />
+      <ModuleAccent variant="test" height={160} />
 
       <Card className="mb-4">
         <SectionTitle title="Enter Test Access Code" subtitle="e.g. MATH2026" />
