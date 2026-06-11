@@ -9,6 +9,7 @@ import { Loading } from "@/components/ui/States";
 import { toast } from "@/components/ui/Toast";
 import { formatDateTime } from "@/lib/utils";
 import { QrCode, RefreshCw, Download } from "lucide-react";
+import ModuleAccent from "@/components/3d/ModuleAccent";
 
 export default function QrPage() {
   const [code, setCode] = useState<any>(null);
@@ -52,6 +53,7 @@ export default function QrPage() {
   return (
     <div>
       <PageHeader title="Daily QR Attendance" subtitle="Generate a daily QR code for students to check in & out." />
+      <ModuleAccent variant="qr" height={200} scanActive={!!qrImg} />
       <div className="grid gap-4 lg:grid-cols-2">
         <Card className="flex flex-col items-center justify-center text-center">
           {loading ? <Loading /> : qrImg ? (
