@@ -1,4 +1,7 @@
+"use client";
+
 import { LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const tones: Record<string, string> = {
@@ -24,7 +27,14 @@ export default function StatCard({
   hint?: string;
 }) {
   return (
-    <div className="glass card fade-up p-5">
+    <motion.div
+      className="glass card p-5"
+      initial={{ opacity: 0, y: 14, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+    >
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted">{label}</p>
@@ -40,6 +50,6 @@ export default function StatCard({
           <Icon className="h-6 w-6" />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
