@@ -2,9 +2,9 @@ import Link from "next/link";
 import { ShieldCheck, GraduationCap, Users, ArrowRight } from "lucide-react";
 
 const portals = [
-  { href: "/login/admin", icon: ShieldCheck, title: "Admin", desc: "Manage students, tests, fees & more.", tone: "from-brand-500 to-brand-600" },
+  { href: "/login/admin", icon: ShieldCheck, title: "Admin", desc: "Manage students, tests and operations.", tone: "from-brand-500 to-brand-600" },
   { href: "/login/student", icon: GraduationCap, title: "Student", desc: "Take tests, view notes & homework.", tone: "from-accent-400 to-accent-600" },
-  { href: "/login/parent", icon: Users, title: "Parent", desc: "Track attendance, marks & fees.", tone: "from-violet-400 to-violet-600" },
+  { href: "/login/parent", icon: Users, title: "Parent", desc: "Track attendance, marks and homework.", tone: "from-violet-400 to-violet-600" },
 ];
 
 export default function LoginSelection() {
