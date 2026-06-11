@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { useFetch } from "@/lib/useFetch";
 import { apiPost } from "@/lib/api";
 import PageHeader from "@/components/dashboard/PageHeader";
@@ -13,6 +13,8 @@ import Field from "@/components/ui/Field";
 import { toast } from "@/components/ui/Toast";
 import { formatDate } from "@/lib/utils";
 import { BookOpen, Upload, Download, Clock } from "lucide-react";
+import ModuleAccent from "@/components/3d/ModuleAccent";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function StudentHomework() {
   const { data, loading, error, refetch } = useFetch<any[]>("/api/student/homework");
@@ -21,6 +23,7 @@ export default function StudentHomework() {
   const [fileUrl, setFileUrl] = useState("");
   const [note, setNote] = useState("");
   const [saving, setSaving] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   function openSubmit(h: any) {
     setActive(h); setFileUrl(""); setNote(""); setOpen(true);
@@ -31,6 +34,8 @@ export default function StudentHomework() {
     const res = await apiPost(`/api/student/homework/${active.id}/submit`, { fileUrl, note });
     setSaving(false);
     if (!res.ok) return toast.error(res.error!);
+    setUploadSuccess(true);
+    window.setTimeout(() => setUploadSuccess(false), 1800);
     toast.success("Homework submitted!");
     setOpen(false); refetch();
   }
@@ -41,6 +46,18 @@ export default function StudentHomework() {
   return (
     <div>
       <PageHeader title="Homework" subtitle="View assignments and submit your work." />
+      <div className="relative mb-4">
+        <ModuleAccent variant="homework" height={140} />
+        <AnimatePresence>
+          {uploadSuccess && (
+            <motion.div className="upload-success-burst" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              {Array.from({ length: 12 }).map((_, i) => (
+                <span key={i} className="upload-success-particle" style={{ "--i": i } as CSSProperties} />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
       {(data || []).length === 0 ? (
         <Card><EmptyState icon={BookOpen} title="No homework assigned" /></Card>
       ) : (
