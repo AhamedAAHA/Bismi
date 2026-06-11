@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { apiPost } from "@/lib/api";
 import { toast, Toaster } from "@/components/ui/Toast";
 import { Eye, EyeOff, LogIn, Loader2, LucideIcon } from "lucide-react";
+import TiltCard from "@/components/3d/TiltCard";
 
 interface Props {
   role: "ADMIN" | "STUDENT" | "PARENT";
@@ -66,7 +67,7 @@ export default function LoginForm({
   return (
     <div className="w-full max-w-md">
       <Toaster />
-      <div className="glass-strong card p-7 fade-up">
+      <TiltCard className="glass-strong card p-7 fade-up">
         <div className={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${tone} text-white shadow-glow`}>
           <Icon className="h-7 w-7" />
         </div>
@@ -127,7 +128,7 @@ export default function LoginForm({
         >
           Use demo credentials → {demo.id} / {demo.pass}
         </button>
-      </div>
+      </TiltCard>
     </div>
   );
 }
