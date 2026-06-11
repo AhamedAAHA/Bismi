@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { apiPost } from "@/lib/api";
 import { toast, Toaster } from "@/components/ui/Toast";
 import { Eye, EyeOff, LogIn, Loader2, LucideIcon } from "lucide-react";
@@ -30,7 +30,6 @@ export default function LoginForm({
   tone,
   dest,
 }: Props) {
-  const router = useRouter();
   const params = useSearchParams();
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -55,8 +54,8 @@ export default function LoginForm({
     }
     toast.success("Welcome back!");
     const from = params.get("from");
-    router.push(from && from.startsWith(dest) ? from : dest);
-    router.refresh();
+    const target = from && from.startsWith(dest) ? from : dest;
+    window.location.assign(target);
   }
 
   function fillDemo() {

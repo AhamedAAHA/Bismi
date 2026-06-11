@@ -10,12 +10,15 @@ export default function PageHeader({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h1 className="text-2xl font-extrabold">{title}</h1>
+    <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+      <div className="min-w-0">
+        <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.28em] text-accent-400">
+          Command Center
+        </p>
+        <h1 className="break-words text-2xl font-black tracking-tight sm:text-3xl">{title}</h1>
         {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}
       </div>
-      {action && <div className="flex flex-wrap gap-2">{action}</div>}
+      {action && <div className="flex shrink-0 flex-wrap gap-2">{action}</div>}
     </div>
   );
 }

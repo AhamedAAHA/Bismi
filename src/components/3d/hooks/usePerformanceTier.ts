@@ -10,10 +10,9 @@ export function usePerformanceTier(): PerformanceTier {
   useEffect(() => {
     const w = window.innerWidth;
     const coarse = window.matchMedia("(pointer: coarse)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mem = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 4;
 
-    if (reduced || w < 480 || (coarse && mem <= 2)) setTier("low");
+    if (w < 480 || (coarse && mem <= 2)) setTier("low");
     else if (w < 1024 || coarse || mem <= 4) setTier("medium");
     else setTier("high");
   }, []);

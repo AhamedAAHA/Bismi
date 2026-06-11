@@ -38,8 +38,9 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  // If already logged in, redirect away from login pages to dashboard
-  if (pathname.startsWith("/login") && role) {
+  // Keep the generic login entry smart, but allow role-specific login pages
+  // so an existing/stale session can be replaced by signing in again.
+  if (pathname === "/login" && role) {
     const dest =
       role === "ADMIN" ? "/admin" : role === "STUDENT" ? "/student" : "/parent";
     const url = req.nextUrl.clone();

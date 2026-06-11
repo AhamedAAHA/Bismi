@@ -61,6 +61,12 @@ export default function DashboardShell({
           <Logo size="sm" />
         </Link>
       </div>
+      <div className="mx-3 mb-3 rounded-2xl border border-[var(--border)] bg-white/[0.03] px-3 py-2">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted">
+          {roleLabel} Window
+        </p>
+        <p className="truncate text-sm font-semibold text-[var(--text)]">{userName}</p>
+      </div>
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 pb-4">
         {nav.map((item) => {
           const active = isActive(item.href);
@@ -70,10 +76,10 @@ export default function DashboardShell({
               href={item.href}
               onClick={() => setOpen(false)}
               className={cn(
-                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
+                "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition",
                 active
-                  ? "bg-gradient-to-r from-brand-500 to-accent-500 text-white shadow-glow"
-                  : "text-muted hover:bg-brand-500/10 hover:text-brand-500"
+                  ? "bg-white/[0.08] text-accent-400 shadow-[inset_0_0_0_1px_rgba(103,232,249,0.26),0_18px_36px_-28px_rgba(103,232,249,0.9)]"
+                  : "text-muted hover:bg-white/[0.05] hover:text-[var(--text)]"
               )}
             >
               <item.icon className="h-4.5 w-4.5 shrink-0" style={{ width: 18, height: 18 }} />
@@ -95,7 +101,7 @@ export default function DashboardShell({
       <Toaster />
 
       {/* Desktop sidebar */}
-      <aside className="glass-strong fixed left-0 top-0 z-40 hidden h-screen w-64 border-r border-[var(--border)] lg:block">
+      <aside className="glass-strong fixed left-0 top-0 z-40 hidden h-screen w-72 border-r border-[var(--border)] lg:block">
         {SidebarContent}
       </aside>
 
@@ -115,7 +121,7 @@ export default function DashboardShell({
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: "tween", duration: 0.25 }}
-              className="glass-strong fixed left-0 top-0 z-50 h-screen w-64 border-r border-[var(--border)] lg:hidden"
+              className="glass-strong fixed left-0 top-0 z-50 h-screen w-72 max-w-[86vw] border-r border-[var(--border)] lg:hidden"
             >
               <button
                 onClick={() => setOpen(false)}
@@ -130,13 +136,14 @@ export default function DashboardShell({
       </AnimatePresence>
 
       {/* Main */}
-      <div className="lg:pl-64">
+      <div className="lg:pl-72">
         {/* Navbar */}
-        <header className="glass-strong sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-[var(--border)] px-4 py-3 sm:px-6">
+        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#050914]/78 px-4 py-3 backdrop-blur-2xl sm:px-6">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border)] lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -148,8 +155,8 @@ export default function DashboardShell({
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <div className="flex items-center gap-2.5 rounded-xl border border-[var(--border)] px-2.5 py-1.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-accent-500 text-xs font-bold text-white">
+            <div className="flex min-w-0 items-center gap-2.5 rounded-full border border-[var(--border)] bg-white/[0.03] px-2.5 py-1.5">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-400 to-brand-500 text-xs font-extrabold text-[#03111f]">
                 {initials(userName)}
               </div>
               <div className="hidden leading-tight sm:block">
@@ -158,10 +165,11 @@ export default function DashboardShell({
               </div>
             </div>
           </div>
+          </div>
         </header>
 
         {/* Page content */}
-        <main className="min-h-[calc(100vh-130px)] px-4 py-5 sm:px-6">
+        <main className="mx-auto min-h-[calc(100vh-130px)] max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
           <motion.div
             key={pathname}
             initial={{ opacity: 0, y: 12 }}

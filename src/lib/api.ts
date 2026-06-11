@@ -13,6 +13,7 @@ export async function api<T = any>(
   try {
     const res = await fetch(url, {
       ...options,
+      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
         ...(options.headers || {}),

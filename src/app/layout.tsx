@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className="font-sans">
         <ThemeProvider>
           <SceneRoot />
-          {children}
+          <div className="app-content">{children}</div>
         </ThemeProvider>
       </body>
     </html>

@@ -1,5 +1,3 @@
-import { GraduationCap } from "lucide-react";
-
 export default function Logo({
   size = "md",
   showText = true,
@@ -7,25 +5,22 @@ export default function Logo({
   size?: "sm" | "md" | "lg";
   showText?: boolean;
 }) {
-  const dim = size === "sm" ? 32 : size === "lg" ? 56 : 40;
-  const text =
-    size === "sm" ? "text-base" : size === "lg" ? "text-2xl" : "text-lg";
+  const mark = size === "sm" ? "text-xl" : size === "lg" ? "text-4xl" : "text-2xl";
+  const text = size === "sm" ? "text-sm" : size === "lg" ? "text-xl" : "text-base";
   return (
-    <div className="flex items-center gap-2.5">
-      <div
-        className="flex items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow"
-        style={{ width: dim, height: dim }}
-      >
-        <GraduationCap style={{ width: dim * 0.55, height: dim * 0.55 }} />
+    <div className="flex items-center gap-2.5 leading-none">
+      <div className="relative grid place-items-center">
+        <span className={`font-black tracking-tight text-white ${mark}`}>ai</span>
+        <span className="absolute -right-1 top-0 h-2 w-2 rounded-full bg-accent-400 shadow-[0_0_18px_rgba(103,232,249,0.9)]" />
       </div>
       {showText && (
         <div className="leading-tight">
-          <p className={`font-extrabold ${text}`}>
-            3D <span className="text-brand-500">Education</span> Hub
+          <p className={`font-extrabold tracking-wide text-white ${text}`}>
+            BISMI
           </p>
           {size !== "sm" && (
-            <p className="text-[10px] uppercase tracking-wider text-muted">
-              Smart Tuition System
+            <p className="text-[10px] uppercase tracking-[0.22em] text-muted">
+              Education OS
             </p>
           )}
         </div>

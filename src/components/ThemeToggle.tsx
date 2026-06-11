@@ -14,7 +14,7 @@ export default function ThemeToggle() {
     <button
       aria-label="Toggle theme"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="glass card flex h-10 w-10 items-center justify-center transition hover:scale-105"
+      className="glass flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition hover:scale-105"
     >
       {mounted ? (
         isDark ? (
