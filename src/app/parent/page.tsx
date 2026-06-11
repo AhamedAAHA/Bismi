@@ -5,8 +5,8 @@ import PageHeader from "@/components/dashboard/PageHeader";
 import { Card, SectionTitle } from "@/components/ui/Card";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import { StatusBadge } from "@/components/ui/Badge";
-import { currency, formatDate } from "@/lib/utils";
-import { ClipboardCheck, BarChart3, CreditCard, BookOpen, Megaphone, LogIn, LogOut } from "lucide-react";
+import { formatDate } from "@/lib/utils";
+import { ClipboardCheck, BarChart3, BookOpen, Megaphone, LogIn, LogOut } from "lucide-react";
 
 export default function ParentDashboard() {
   const { data, loading, error } = useFetch<any>("/api/parent/overview");
@@ -15,37 +15,41 @@ export default function ParentDashboard() {
 
   return (
     <div>
-      <PageHeader title={`Hello, ${data.parentName.split(" ")[0]}!`} subtitle="Track your child's progress at a glance." />
+      <PageHeader title={`Hello, ${data.parentName.split(" ")[0]}!`} subtitle="Track every linked student class by class from one parent login." />
 
       {data.children.length === 0 ? (
         <Card><EmptyState title="No children linked" message="Contact the admin to link your child's account." /></Card>
       ) : (
         <div className="space-y-4">
-          {data.children.map((c: any) => (
-            <Card key={c.id}>
-              <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <h3 className="text-lg font-bold">{c.name}</h3>
-                  <p className="text-sm text-muted">{c.code} • {c.className}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted">Today:</span>
-                  <StatusBadge status={c.todayStatus === "Not marked" ? "PENDING" : c.todayStatus} />
-                </div>
-              </div>
+          {data.classGroups.map((group: any) => (
+            <section key={group.className} className="space-y-3">
+              <h2 className="text-sm font-bold uppercase text-muted">{group.className}</h2>
+              {group.children.map((c: any) => (
+                <Card key={c.id}>
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <h3 className="text-lg font-bold">{c.name}</h3>
+                      <p className="text-sm text-muted">{c.code} - {c.className}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-muted">Today:</span>
+                      <StatusBadge status={c.todayStatus === "Not marked" ? "PENDING" : c.todayStatus} />
+                    </div>
+                  </div>
 
-              <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-                <Mini icon={ClipboardCheck} tone="text-emerald-500" label="Attendance" value={`${c.attendancePct}%`} />
-                <Mini icon={BarChart3} tone="text-brand-500" label="Avg Marks" value={`${c.avgMarks}%`} />
-                <Mini icon={CreditCard} tone="text-rose-500" label="Fees Due" value={currency(c.dueAmount)} />
-                <Mini icon={BookOpen} tone="text-violet-500" label="Pending HW" value={c.pendingHw} />
-              </div>
+                  <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+                    <Mini icon={ClipboardCheck} tone="text-emerald-500" label="Attendance" value={`${c.attendancePct}%`} />
+                    <Mini icon={BarChart3} tone="text-brand-500" label="Avg Marks" value={`${c.avgMarks}%`} />
+                    <Mini icon={BookOpen} tone="text-violet-500" label="Pending HW" value={c.pendingHw} />
+                  </div>
 
-              <div className="mt-3 flex flex-wrap gap-3 text-sm text-muted">
-                <span className="flex items-center gap-1"><LogIn className="h-4 w-4 text-emerald-500" /> Check-in: <b className="text-[var(--text)]">{c.checkIn || "—"}</b></span>
-                <span className="flex items-center gap-1"><LogOut className="h-4 w-4 text-rose-500" /> Check-out: <b className="text-[var(--text)]">{c.checkOut || "—"}</b></span>
-              </div>
-            </Card>
+                  <div className="mt-3 flex flex-wrap gap-3 text-sm text-muted">
+                    <span className="flex items-center gap-1"><LogIn className="h-4 w-4 text-emerald-500" /> Check-in: <b className="text-[var(--text)]">{c.checkIn || "-"}</b></span>
+                    <span className="flex items-center gap-1"><LogOut className="h-4 w-4 text-rose-500" /> Check-out: <b className="text-[var(--text)]">{c.checkOut || "-"}</b></span>
+                  </div>
+                </Card>
+              ))}
+            </section>
           ))}
         </div>
       )}
