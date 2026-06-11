@@ -11,7 +11,6 @@ import {
   ClipboardCheck,
   Brain,
   Trophy,
-  CreditCard,
   CalendarDays,
   Mail,
   FileText,
@@ -23,9 +22,8 @@ const features = [
   { icon: FileText, title: "Online Tests", desc: "MCQ exams with access codes, auto-grading & instant results." },
   { icon: Brain, title: "AI Study Assistant", desc: "Students get explanations, MCQs and lesson summaries." },
   { icon: Trophy, title: "Leaderboard", desc: "Rank by marks, attendance & homework completion." },
-  { icon: CreditCard, title: "Fee Management", desc: "Record payments, generate receipts and track dues." },
   { icon: CalendarDays, title: "Class Schedule", desc: "Today's and upcoming classes with teacher assignments." },
-  { icon: Mail, title: "Email Notifications", desc: "Automatic parent emails for absence, marks, fees & more." },
+  { icon: Mail, title: "Email Notifications", desc: "Automatic parent emails for absence, marks and updates." },
 ];
 
 const portals = [
@@ -61,7 +59,7 @@ export default function LandingPage() {
               </span>
             </h1>
             <p className="mt-4 max-w-md text-base text-muted">
-              3D Education Hub brings attendance, online tests, homework, fees,
+              3D Education Hub brings attendance, online tests, homework,
               leaderboards and parent communication together in one beautiful,
               professional platform.
             </p>
