@@ -1,4 +1,5 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Logo from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
@@ -31,6 +32,8 @@ const portals = [
   { href: "/login/student", icon: GraduationCap, title: "Student Portal", desc: "Tests, notes, homework & AI help.", tone: "from-accent-400 to-accent-600" },
   { href: "/login/parent", icon: Users, title: "Parent Portal", desc: "Track your child's progress.", tone: "from-violet-400 to-violet-600" },
 ];
+
+const Hero3D = dynamic(() => import("@/components/3d/Hero3D"), { ssr: false });
 
 export default function LandingPage() {
   return (
@@ -78,8 +81,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="fade-up">
-            <div className="glass-strong card p-6">
+          <div className="fade-up relative">
+            <Hero3D />
+            <div className="glass-strong card hero-overlay-card mt-4 p-5 md:absolute md:bottom-4 md:left-4 md:right-4 md:mt-0">
               <div className="grid grid-cols-3 gap-3">
                 {portals.map((p) => (
                   <div key={p.href} className="glass card flex flex-col items-center gap-2 p-4 text-center">
