@@ -9,6 +9,7 @@ import { Loading, EmptyState } from "@/components/ui/States";
 import { toast } from "@/components/ui/Toast";
 import { todayStr } from "@/lib/utils";
 import { CheckCircle2, Save, Square, Users } from "lucide-react";
+import ModuleAccent from "@/components/3d/ModuleAccent";
 
 export default function AttendancePage() {
   const { data: classes } = useFetch<any[]>("/api/admin/classes");
@@ -70,6 +71,7 @@ export default function AttendancePage() {
   return (
     <div>
       <PageHeader title="Attendance Management" subtitle="Choose a class, then tick every student who came today." />
+      <ModuleAccent variant="attendance" height={180} />
       <Card className="mb-4">
         <div className="flex flex-wrap items-end gap-3">
           <div>
