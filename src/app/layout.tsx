@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import EduBackground from "@/components/EduBackground";
+import SceneRoot from "@/components/SceneRoot";
 
 export const metadata: Metadata = {
   title: "3D Education Hub – Smart Tuition Management System",
@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans">
         <ThemeProvider>
-          <EduBackground />
+          <SceneRoot />
           {children}
         </ThemeProvider>
       </body>
