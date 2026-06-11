@@ -5,6 +5,8 @@ import PageHeader from "@/components/dashboard/PageHeader";
 import { Card } from "@/components/ui/Card";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import { Trophy, Medal, Star } from "lucide-react";
+import ModuleAccent from "@/components/3d/ModuleAccent";
+import { motion } from "framer-motion";
 
 export default function Leaderboard() {
   const { data, loading, error } = useFetch<any[]>("/api/student/leaderboard");
@@ -16,6 +18,7 @@ export default function Leaderboard() {
   return (
     <div>
       <PageHeader title="Leaderboard" subtitle="Ranked by marks, attendance & homework completion." />
+      <ModuleAccent variant="leaderboard" height={200} />
 
       {board.length === 0 ? (
         <Card><EmptyState icon={Trophy} title="No rankings yet" /></Card>
@@ -28,7 +31,7 @@ export default function Leaderboard() {
               const colors = ["from-amber-400 to-yellow-500", "from-slate-300 to-slate-400", "from-orange-400 to-amber-600"];
               const heights = ["", "mt-0", "mt-6"];
               return (
-                <Card key={pos} className={`text-center ${pos === 0 ? "ring-2 ring-amber-400" : ""} ${heights[pos]}`}>
+                <Card key={pos} className={`text-center ${pos === 0 ? "ring-2 ring-amber-400 podium-gold" : pos === 1 ? "podium-silver" : "podium-bronze"} ${heights[pos]}`}>
                   <div className={`mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br ${colors[pos]} text-white shadow-glow`}>
                     {pos === 0 ? <Trophy className="h-7 w-7" /> : <Medal className="h-6 w-6" />}
                   </div>
