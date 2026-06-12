@@ -78,7 +78,6 @@ export default function LandingPage() {
       <section
         id="platform"
         className="relative overflow-hidden"
-        style={{ minHeight: "80vh" }}
       >
         {/* 3D canvas fills the section — scrolls with it */}
         <GlobalScene />
@@ -91,16 +90,16 @@ export default function LandingPage() {
             bottom: 0,
             left: 0,
             right: 0,
-            height: "120px",
+            height: "100px",
             background: "linear-gradient(to bottom, transparent, #050814)",
             zIndex: 1,
             pointerEvents: "none",
           }}
         />
 
-        {/* Hero text — above scene */}
+        {/* Hero text — above scene, vertically centred */}
         <div
-          className="relative mx-auto flex max-w-2xl flex-col items-center px-5 pb-24 pt-16 text-center"
+          className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-2xl flex-col items-center justify-center px-5 pb-10 pt-8 text-center"
           style={{ zIndex: 10 }}
         >
           <span className="badge badge-blue mb-6 inline-flex gap-1.5 border border-[#54f4ff]/20 bg-[#54f4ff]/10 px-3 py-1.5 text-xs font-bold tracking-wide text-[#54f4ff]">
@@ -131,7 +130,7 @@ export default function LandingPage() {
       {/* ══════════════════════════════════════════
           FEATURES STRIP — 3 pillars
       ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[#050814] py-12">
+      <section className="relative overflow-hidden bg-[#050814] py-10">
         {/* OrbitalScene anchored right — low opacity so cards are legible */}
         <OrbitalScene opacity={0.28} />
 
