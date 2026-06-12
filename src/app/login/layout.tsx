@@ -24,7 +24,7 @@ export default function LoginLayout({
           </Link>
         </div>
       </header>
-      <main className="relative z-10 flex flex-1 items-center justify-center px-5 py-8">
+      <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 items-center justify-center px-5 py-8 lg:justify-start">
         {children}
       </main>
       <Footer />

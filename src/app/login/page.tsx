@@ -9,7 +9,7 @@ const portals = [
 
 export default function LoginSelection() {
   return (
-    <div className="w-full max-w-3xl text-center">
+    <div className="w-full max-w-3xl text-center lg:ml-0 lg:mr-auto lg:-translate-x-10">
       <h1 className="text-3xl font-extrabold">Sign in to continue</h1>
       <p className="mt-2 text-sm text-muted">Select your portal to log in.</p>
       <div className="mt-8 grid gap-5 sm:grid-cols-3">

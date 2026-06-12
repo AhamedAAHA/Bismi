@@ -98,7 +98,7 @@ export default function DashboardShell({
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <OrbitalScene opacity={0.2} />
+      {role !== "ADMIN" && <OrbitalScene opacity={0.2} />}
       <Toaster />
 
       {/* Desktop sidebar */}
@@ -137,10 +137,10 @@ export default function DashboardShell({
       </AnimatePresence>
 
       {/* Main */}
-      <div className="lg:pl-72 min-h-screen flex flex-col">
+      <div className="lg:pl-72 min-h-screen flex flex-col w-full overflow-x-hidden">
         {/* Navbar */}
-        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#050914]/80 px-4 py-3 backdrop-blur-2xl sm:px-6">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
+        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#050914]/80 px-4 py-3 backdrop-blur-2xl sm:px-6 w-full">
+          <div className="flex items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-3">
               <button
                 onClick={() => setOpen(true)}
@@ -170,7 +170,7 @@ export default function DashboardShell({
         </header>
 
         {/* Page content */}
-        <main className="mx-auto w-full max-w-7xl flex-1 min-h-0 px-4 pt-4 pb-4 sm:px-6">
+        <main className="w-full flex-1 min-h-0 px-4 pt-4 pb-4 sm:px-6 overflow-x-hidden">
           <motion.div
             key={pathname}
             initial={{ opacity: 0, y: 0 }}
