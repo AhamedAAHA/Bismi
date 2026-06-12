@@ -4,13 +4,12 @@ import SceneCanvas from "./SceneCanvas";
 import { SentraCoreField } from "./SentraField";
 
 /**
- * Hero 3D scene — used as an absolute background inside the landing hero section.
- * Parent must be: position:relative; overflow:hidden.
+ * Hero 3D scene — absolute background inside the landing hero section.
+ * Parent must have: position:relative; overflow:hidden; min-height set.
  */
 export default function GlobalScene() {
   return (
     <div
-      className="hero-scene"
       aria-hidden="true"
       style={{
         position: "absolute",
@@ -28,11 +27,12 @@ export default function GlobalScene() {
         interactive={false}
         opaque={false}
       >
-        <ambientLight intensity={0.7} />
-        <pointLight position={[3, 4, 4]} intensity={1.6} color="#67f6ff" />
-        <pointLight position={[-4, -2, 3]} intensity={0.85} color="#a071ff" />
-        <group position={[2.15, -0.26, -0.7]}>
-          <SentraCoreField scale={0.58} speed={0.78} />
+        <ambientLight intensity={0.65} />
+        <pointLight position={[3, 4, 4]}   intensity={1.8} color="#67f6ff" />
+        <pointLight position={[-4, -2, 3]} intensity={1.0} color="#a071ff" />
+        {/* Positioned far right so it decorates without covering centred text */}
+        <group position={[3.2, -0.1, -1.2]}>
+          <SentraCoreField scale={0.7} speed={0.75} />
         </group>
       </SceneCanvas>
     </div>
