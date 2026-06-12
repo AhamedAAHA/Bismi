@@ -19,21 +19,23 @@ export default function OrbitalScene({ opacity = 0.55 }: { opacity?: number }) {
       aria-hidden="true"
       style={{
         position: "fixed",
-        inset: 0,
-        width: "100%",
-        height: "100%",
+        left: "60%",
+        top: "65%",
+        transform: "translate(-50%, -50%)",
+        width: "140vw",
+        height: "110vh",
         zIndex: 0,
         pointerEvents: "none",
-        overflow: "hidden",
+        overflow: "visible",
         opacity,
       }}
     >
       <svg
         className="orbital-svg"
-        viewBox="0 0 900 600"
-        preserveAspectRatio="xMidYMid slice"
+        viewBox="0 0 1100 800"
+        preserveAspectRatio="xMidYMid meet"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}
       >
         <defs>
           {/* Radial glow for core */}
@@ -78,9 +80,10 @@ export default function OrbitalScene({ opacity = 0.55 }: { opacity?: number }) {
         </defs>
 
         {/* Ambient background glow */}
-        <ellipse cx="660" cy="200" rx="340" ry="260" fill="url(#ambientGlow)" />
+        <g transform="translate(100, 190)">
+          <ellipse cx="660" cy="200" rx="340" ry="260" fill="url(#ambientGlow)" />
 
-        {/* Large soft orbit rings — elliptical to suggest 3D tilt */}
+          {/* Large soft orbit rings — elliptical to suggest 3D tilt */}
         {/* Ring 1 – largest, cyan */}
         <ellipse
           cx="660" cy="220"
@@ -124,6 +127,7 @@ export default function OrbitalScene({ opacity = 0.55 }: { opacity?: number }) {
         <circle cx="660" cy="220" r="12" fill="#54f4ff" opacity="0.22"
           style={{ animation: "corePulse 3s ease-in-out infinite 0.5s" }} />
         <circle cx="660" cy="220" r="5" fill="#fff" opacity="0.9" filter="url(#blur4)" />
+        </g>
 
         {/* Floating orbital nodes on rings */}
         {/* Node 1 on ring 1 */}
@@ -175,15 +179,19 @@ export default function OrbitalScene({ opacity = 0.55 }: { opacity?: number }) {
 
         {/* BISMI IS REASONING label */}
         <text
-          x="640" y="285"
+          x="760" y="500"
           textAnchor="middle"
           fontFamily="'Manrope', 'Inter', system-ui, sans-serif"
-          fontSize="9"
-          fontWeight="700"
-          letterSpacing="4"
-          fill="#54f4ff"
-          opacity="0.7"
-          style={{ animation: "labelPulse 3s ease-in-out infinite" }}
+          fontSize="18"
+          fontWeight="600"
+          letterSpacing="0.4em"
+          fill="rgba(180,255,255,0.95)"
+          opacity="1"
+          style={{
+            animation: "labelPulse 3s ease-in-out infinite",
+            textTransform: "uppercase",
+            filter: "drop-shadow(0 0 8px rgba(84,244,255,0.5)) drop-shadow(0 0 16px rgba(84,244,255,0.25))",
+          }}
         >
           BISMI IS REASONING
         </text>

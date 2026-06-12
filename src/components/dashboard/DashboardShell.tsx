@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { adminNav, studentNav, parentNav } from "./nav";
 import Logo from "@/components/Logo";
-import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
+import OrbitalScene from "@/components/3d/OrbitalScene";
 import { Toaster, toast } from "@/components/ui/Toast";
 import { cn, initials } from "@/lib/utils";
 import { apiPost } from "@/lib/api";
@@ -98,6 +98,7 @@ export default function DashboardShell({
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      <OrbitalScene opacity={0.2} />
       <Toaster />
 
       {/* Desktop sidebar */}
@@ -136,7 +137,7 @@ export default function DashboardShell({
       </AnimatePresence>
 
       {/* Main */}
-      <div className="lg:pl-72">
+      <div className="lg:pl-72 min-h-screen flex flex-col">
         {/* Navbar */}
         <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#050914]/80 px-4 py-3 backdrop-blur-2xl sm:px-6">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
@@ -155,7 +156,6 @@ export default function DashboardShell({
               </div>
             </div>
             <div className="flex shrink-0 items-center gap-3">
-              <ThemeToggle />
               <div className="flex min-w-0 items-center gap-2.5 rounded-full border border-[var(--border)] bg-white/[0.03] px-2.5 py-1.5">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-400 to-brand-500 text-xs font-extrabold text-[#03111f]">
                   {initials(userName)}
@@ -170,12 +170,12 @@ export default function DashboardShell({
         </header>
 
         {/* Page content */}
-        <main className="mx-auto w-full max-w-7xl px-4 py-5 sm:px-6 lg:py-8">
+        <main className="mx-auto w-full max-w-7xl flex-1 min-h-0 px-4 pt-4 pb-4 sm:px-6">
           <motion.div
             key={pathname}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
           >
             {children}
           </motion.div>

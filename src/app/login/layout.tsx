@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
 import OrbitalScene from "@/components/3d/OrbitalScene";
 import { ArrowLeft } from "lucide-react";
@@ -23,7 +22,6 @@ export default function LoginLayout({
           <Link href="/" className="btn btn-ghost btn-sm">
             <ArrowLeft className="h-4 w-4" /> Home
           </Link>
-          <ThemeToggle />
         </div>
       </header>
       <main className="relative z-10 flex flex-1 items-center justify-center px-5 py-8">
