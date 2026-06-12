@@ -18,7 +18,7 @@ export default function OrbitalScene({ opacity = 0.55 }: { opacity?: number }) {
       className="orbital-scene"
       aria-hidden="true"
       style={{
-        position: "absolute",
+        position: "fixed",
         inset: 0,
         width: "100%",
         height: "100%",
