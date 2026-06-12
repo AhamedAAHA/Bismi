@@ -23,16 +23,16 @@ export default function GlobalScene() {
     >
       <SceneCanvas
         className=""
-        camera={{ position: [0, 0, 7.5], fov: 32 }}
+        camera={{ position: [0, 0, 7.5], fov: 42 }}
         interactive={false}
         opaque={false}
       >
         <ambientLight intensity={0.5} />
-        <pointLight position={[6, 3, 3]}   intensity={1.4} color="#67f6ff" />
-        <pointLight position={[-2, -2, 4]} intensity={0.7} color="#a071ff" />
-        {/* Small sphere pushed far right — only partially visible, acts as accent */}
-        <group position={[5.5, 0, -2]}>
-          <SentraCoreField scale={0.38} speed={0.6} />
+        <pointLight position={[6, 3, 3]}   intensity={1.6} color="#67f6ff" />
+        <pointLight position={[-2, -2, 4]} intensity={0.8} color="#a071ff" />
+        {/* Centred in the right half — x offset pushes it to align with right column */}
+        <group position={[2.4, 0, 0]}>
+          <SentraCoreField scale={0.72} speed={0.65} />
         </group>
       </SceneCanvas>
     </div>
