@@ -77,8 +77,7 @@ export default function LandingPage() {
       ══════════════════════════════════════════ */}
       <section
         id="platform"
-        className="relative overflow-hidden"
-        style={{ minHeight: "80vh" }}
+        className="relative flex min-h-[calc(100vh-80px)] flex-col overflow-hidden"
       >
         {/* 3D canvas fills the section — scrolls with it */}
         <GlobalScene />
@@ -91,47 +90,53 @@ export default function LandingPage() {
             bottom: 0,
             left: 0,
             right: 0,
-            height: "120px",
+            height: "100px",
             background: "linear-gradient(to bottom, transparent, #050814)",
             zIndex: 1,
             pointerEvents: "none",
           }}
         />
 
-        {/* Hero text — above scene */}
+        {/* Hero — two columns: text left, 3D globe right */}
         <div
-          className="relative mx-auto flex max-w-2xl flex-col items-center px-5 pb-24 pt-16 text-center"
+          className="relative mx-auto w-full flex-1 grid max-w-7xl grid-cols-1 items-center gap-0 px-5 lg:grid-cols-2"
           style={{ zIndex: 10 }}
         >
-          <span className="badge badge-blue mb-6 inline-flex gap-1.5 border border-[#54f4ff]/20 bg-[#54f4ff]/10 px-3 py-1.5 text-xs font-bold tracking-wide text-[#54f4ff]">
-            <Sparkles className="h-3.5 w-3.5" />
-            Tuition management command center
-          </span>
+          {/* ── Left: text ── */}
+          <div className="flex flex-col items-start py-16 text-left">
+            <span className="badge badge-blue mb-6 inline-flex gap-1.5 border border-[#54f4ff]/20 bg-[#54f4ff]/10 px-3 py-1.5 text-xs font-bold tracking-wide text-[#54f4ff]">
+              <Sparkles className="h-3.5 w-3.5" />
+              Tuition management command center
+            </span>
 
-          <h1 className="text-balance text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.6rem]">
-            Run attendance, tests, fees and parent updates from one workspace.
-          </h1>
+            <h1 className="text-pretty text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
+              Run attendance, tests, fees and parent updates from one workspace.
+            </h1>
 
-          <p className="mt-5 max-w-lg text-base leading-7 text-[#9aa9c4]">
-            Bismi gives tuition centers a polished operating system for daily
-            classes, student progress, homework, receipts and parent communication.
-          </p>
+            <p className="mt-5 max-w-md text-base leading-7 text-[#9aa9c4]">
+              Bismi gives tuition centers a polished operating system for daily
+              classes, student progress, homework, receipts and parent communication.
+            </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/login" className="btn btn-primary">
-              Launch workspace <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="#services" className="btn btn-ghost">
-              View services
-            </Link>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/login" className="btn btn-primary">
+                Launch workspace <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="#services" className="btn btn-ghost">
+                View services
+              </Link>
+            </div>
           </div>
+
+          {/* ── Right: spacer — 3D canvas fills absolutely behind ── */}
+          <div className="hidden lg:block" aria-hidden="true" />
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
           FEATURES STRIP — 3 pillars
       ══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[#050814] py-12">
+      <section className="relative overflow-hidden bg-[#050814] py-10">
         {/* OrbitalScene anchored right — low opacity so cards are legible */}
         <OrbitalScene opacity={0.28} />
 
