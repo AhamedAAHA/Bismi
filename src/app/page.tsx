@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
-import OrbitalScene from "@/components/3d/OrbitalScene";
 import {
   ArrowRight,
   BadgeCheck,
@@ -137,9 +136,6 @@ export default function LandingPage() {
           FEATURES STRIP — 3 pillars
       ══════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-[#050814] py-10">
-        {/* OrbitalScene anchored right — low opacity so cards are legible */}
-        <OrbitalScene opacity={0.28} />
-
         <div className="relative z-10 mx-auto max-w-6xl px-5">
           <div className="grid gap-4 sm:grid-cols-3">
             {features.map((f) => (
@@ -161,8 +157,6 @@ export default function LandingPage() {
           SERVICES
       ══════════════════════════════════════════ */}
       <section id="services" className="relative overflow-hidden bg-[#040912] py-16">
-        <OrbitalScene opacity={0.38} />
-
         <div className="relative z-10 mx-auto max-w-6xl px-5">
           {/* Section header */}
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -198,8 +192,6 @@ export default function LandingPage() {
           PORTALS
       ══════════════════════════════════════════ */}
       <section id="portals" className="relative overflow-hidden bg-[#050814] py-16">
-        <OrbitalScene opacity={0.45} />
-
         <div className="relative z-10 mx-auto max-w-6xl px-5">
           <div className="mb-8 text-center">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#54f4ff]">
