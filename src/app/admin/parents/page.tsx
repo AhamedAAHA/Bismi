@@ -70,7 +70,7 @@ export default function ParentsPage() {
           <div className="table-wrap">
             <table className="data">
               <thead>
-                <tr><th>Code</th><th>Name</th><th>Email</th><th>Children</th><th>Phone</th><th className="text-right">Actions</th></tr>
+                <tr><th>Code</th><th>Name</th><th>Email</th><th>Children</th><th>Phone</th><th className="w-[120px] text-right">Actions</th></tr>
               </thead>
               <tbody>
                 {parents!.map((p) => (
@@ -80,7 +80,7 @@ export default function ParentsPage() {
                     <td className="text-muted">{p.user.email || "-"}</td>
                     <td>{p.children.map((c: any) => c.user.name).join(", ") || "-"}</td>
                     <td className="text-muted">{p.phone || "-"}</td>
-                    <td>
+                    <td className="w-[120px] whitespace-nowrap">
                       <div className="flex justify-end gap-1.5">
                         <button className="btn btn-ghost btn-sm" onClick={() => openEdit(p)}><Pencil className="h-3.5 w-3.5" /></button>
                         <button className="btn btn-ghost btn-sm text-rose-500" onClick={() => remove(p)}><Trash2 className="h-3.5 w-3.5" /></button>

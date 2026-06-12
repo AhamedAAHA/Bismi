@@ -14,7 +14,6 @@ interface Props {
   icon: LucideIcon;
   identifierLabel: string;
   identifierPlaceholder: string;
-  demo: { id: string; pass: string };
   tone: string;
   dest: string;
 }
@@ -26,7 +25,6 @@ export default function LoginForm({
   icon: Icon,
   identifierLabel,
   identifierPlaceholder,
-  demo,
   tone,
   dest,
 }: Props) {
@@ -56,11 +54,6 @@ export default function LoginForm({
     const from = params.get("from");
     const target = from && from.startsWith(dest) ? from : dest;
     window.location.assign(target);
-  }
-
-  function fillDemo() {
-    setIdentifier(demo.id);
-    setPassword(demo.pass);
   }
 
   return (
@@ -120,13 +113,6 @@ export default function LoginForm({
             {loading ? "Signing in..." : "Sign in"}
           </button>
         </form>
-
-        <button
-          onClick={fillDemo}
-          className="mt-4 w-full rounded-xl border border-dashed border-[var(--border)] px-3 py-2 text-xs text-muted transition hover:border-brand-500 hover:text-brand-500"
-        >
-          Use demo credentials → {demo.id} / {demo.pass}
-        </button>
       </TiltCard>
     </div>
   );

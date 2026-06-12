@@ -14,7 +14,6 @@ export default function StudentLogin() {
         icon={GraduationCap}
         identifierLabel="Student ID / Code"
         identifierPlaceholder="STU001"
-        demo={{ id: "STU001", pass: "1234" }}
         tone="from-accent-400 to-accent-600"
         dest="/student"
       />

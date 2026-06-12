@@ -35,7 +35,11 @@ export default function AssistantPage() {
     setLoading(true);
     const res = await apiPost("/api/student/assistant", { message: q });
     setLoading(false);
-    setMessages((m) => [...m, { role: "ai", text: res.ok ? res.data.answer : res.error || "Sorry, something went wrong." }]);
+    const reply =
+      res.ok && typeof res.data?.answer === "string" && res.data.answer.trim()
+        ? res.data.answer
+        : res.error || "I could not generate a clear answer. Please try again.";
+    setMessages((m) => [...m, { role: "ai", text: reply }]);
   }
 
   return (

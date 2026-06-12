@@ -106,7 +106,7 @@ export default function StudentsPage() {
                   <th>Class</th>
                   <th>Parent</th>
                   <th>Phone</th>
-                  <th className="text-right">Actions</th>
+                  <th className="w-[120px] text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,7 +117,7 @@ export default function StudentsPage() {
                     <td>{s.class?.name || "-"}</td>
                     <td>{s.parent?.user.name || "-"}</td>
                     <td className="text-muted">{s.phone || "-"}</td>
-                    <td>
+                    <td className="w-[120px] whitespace-nowrap">
                       <div className="flex justify-end gap-1.5">
                         <button className="btn btn-ghost btn-sm" onClick={() => openEdit(s)}><Pencil className="h-3.5 w-3.5" /></button>
                         <button className="btn btn-ghost btn-sm text-rose-500" onClick={() => remove(s)}><Trash2 className="h-3.5 w-3.5" /></button>

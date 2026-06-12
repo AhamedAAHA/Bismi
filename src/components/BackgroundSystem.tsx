@@ -10,6 +10,7 @@ export default function BackgroundSystem() {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    const context = ctx;
 
     let dpr = Math.max(1, window.devicePixelRatio || 1);
     function resize() {
@@ -19,22 +20,22 @@ export default function BackgroundSystem() {
       canvas.height = Math.floor(h * dpr);
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      const gradient = context.createLinearGradient(0, 0, w, h);
       gradient.addColorStop(0, "rgba(12,20,40,0.92)");
       gradient.addColorStop(0.4, "rgba(10,18,34,0.88)");
       gradient.addColorStop(1, "rgba(7,12,24,0.92)");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, w, h);
+      context.fillStyle = gradient;
+      context.fillRect(0, 0, w, h);
 
-      ctx.globalAlpha = 0.06;
-      ctx.fillStyle = "rgba(255,255,255,0.06)";
+      context.globalAlpha = 0.06;
+      context.fillStyle = "rgba(255,255,255,0.06)";
       for (let i = 0; i < 10; i++) {
         const radius = 60 + i * 28;
-        ctx.beginPath();
-        ctx.arc(w * 0.15, h * 0.2 + i * 42, radius, 0, Math.PI * 2);
-        ctx.fill();
+        context.beginPath();
+        context.arc(w * 0.15, h * 0.2 + i * 42, radius, 0, Math.PI * 2);
+        context.fill();
       }
     }
 

@@ -1,14 +1,14 @@
 // 3D Education Hub - Prisma schema
-// Default datasource is SQLite for zero-config local running.
-// To use Supabase/Postgres: change provider to "postgresql" and set DATABASE_URL.
+// Configured for Supabase PostgreSQL.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // Roles: ADMIN | STUDENT | PARENT

@@ -14,7 +14,6 @@ export default function AdminLogin() {
         icon={ShieldCheck}
         identifierLabel="Email Address"
         identifierPlaceholder="admin@3dedu.hub"
-        demo={{ id: "admin@3dedu.hub", pass: "admin123" }}
         tone="from-brand-500 to-brand-600"
         dest="/admin"
       />

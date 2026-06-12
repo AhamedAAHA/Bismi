@@ -14,7 +14,6 @@ export default function ParentLogin() {
         icon={Users}
         identifierLabel="Parent ID / Code"
         identifierPlaceholder="PAR001"
-        demo={{ id: "PAR001", pass: "1234" }}
         tone="from-violet-400 to-violet-600"
         dest="/parent"
       />
