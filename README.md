@@ -32,7 +32,7 @@ npm install
 # 2. Create .env from template and fill Supabase values
 cp .env.example .env
 
-# 3. Push schema + seed sample data
+# 3. Push schema + seed base data
 npm run db:push
 npm run db:seed
 
@@ -42,7 +42,8 @@ npm run dev
 
 Open http://localhost:3000
 
-Seed creates sample users for local testing. Update passwords/users before production use.
+Seed creates base accounts and core settings. No sample students/marks/tests are inserted.
+Default parent access is a shared account code `PARENT` (password configurable via `SEED_PARENT_PASSWORD`).
 
 ## Environment
 

@@ -13,7 +13,7 @@ export default function AdminLogin() {
         subtitle="Sign in to manage your tuition center."
         icon={ShieldCheck}
         identifierLabel="Email Address"
-        identifierPlaceholder="admin@3dedu.hub"
+        identifierPlaceholder="Enter your email"
         tone="from-brand-500 to-brand-600"
         dest="/admin"
       />

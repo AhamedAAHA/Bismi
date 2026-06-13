@@ -92,7 +92,7 @@ export default function SchedulePage() {
               {(subjects || []).map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
             </select>
           </Field>
-          <Field label="Teacher"><input className="input" value={form.teacher || ""} onChange={(e) => setForm({ ...form, teacher: e.target.value })} /></Field>
+          <Field label="Teachers (comma separated)"><input className="input" value={form.teacher || ""} onChange={(e) => setForm({ ...form, teacher: e.target.value })} placeholder="Ms. Nisha, Mr. Ravi" /></Field>
           <Field label="Room"><input className="input" value={form.room || ""} onChange={(e) => setForm({ ...form, room: e.target.value })} /></Field>
         </div>
       </Modal>

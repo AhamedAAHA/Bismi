@@ -1,25 +1,34 @@
 "use client";
 
+import { useState } from "react";
 import { useFetch } from "@/lib/useFetch";
 import PageHeader from "@/components/dashboard/PageHeader";
 import { Card } from "@/components/ui/Card";
 import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import { formatDate } from "@/lib/utils";
 import { MessageSquare } from "lucide-react";
+import ClassFilter from "@/components/parent/ClassFilter";
 
 export default function ParentComments() {
   const { data, loading, error } = useFetch<any>("/api/parent/data?type=comments");
+  const [selectedClass, setSelectedClass] = useState("ALL");
   if (loading) return <Loading />;
   if (error || !data) return <ErrorState message={error || "Failed to load"} />;
+  const classOptions = ["ALL", ...(data.classGroups || []).map((g: any) => g.className)];
+  const visibleGroups =
+    selectedClass === "ALL"
+      ? data.classGroups
+      : data.classGroups.filter((g: any) => g.className === selectedClass);
 
   return (
     <div>
-      <PageHeader title="Teacher Comments" subtitle="All linked students grouped class by class." />
-      {data.classGroups.length === 0 ? (
+      <PageHeader title="Teacher Comments" subtitle="Select a grade to see all teacher comments." />
+      <ClassFilter classes={classOptions} selectedClass={selectedClass} onChange={setSelectedClass} />
+      {visibleGroups.length === 0 ? (
         <Card><EmptyState icon={MessageSquare} title="No students linked" /></Card>
       ) : (
         <div className="space-y-4">
-          {data.classGroups.map((group: any) => (
+          {visibleGroups.map((group: any) => (
             <section key={group.className} className="space-y-3">
               <h2 className="text-sm font-bold uppercase text-muted">{group.className}</h2>
               {group.children.map((child: any) => (

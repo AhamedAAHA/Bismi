@@ -13,7 +13,7 @@ export default function StudentLogin() {
         subtitle="Enter your Student ID and password to continue."
         icon={GraduationCap}
         identifierLabel="Student ID / Code"
-        identifierPlaceholder="STU001"
+        identifierPlaceholder="Enter your student code"
         tone="from-accent-400 to-accent-600"
         dest="/student"
       />

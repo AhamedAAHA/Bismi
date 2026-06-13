@@ -64,3 +64,13 @@ export function pct(num: number, den: number): number {
   if (!den) return 0;
   return Math.round((num / den) * 100);
 }
+
+export function normalizeNameList(input?: string | null): string | null {
+  if (!input) return null;
+  const names = input
+    .split(",")
+    .map((v) => v.trim())
+    .filter(Boolean);
+  if (names.length === 0) return null;
+  return Array.from(new Set(names)).join(", ");
+}

@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { ok, fail, guard } from "@/lib/http";
+import { normalizeNameList } from "@/lib/utils";
 
 export async function GET() {
   const { error } = await guard("ADMIN");
@@ -24,7 +25,7 @@ export async function POST(req: NextRequest) {
       day: b.day,
       startTime: b.startTime,
       endTime: b.endTime,
-      teacher: b.teacher || null,
+      teacher: normalizeNameList(b.teacher),
       room: b.room || null,
     },
   });

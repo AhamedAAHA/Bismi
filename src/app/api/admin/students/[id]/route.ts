@@ -10,13 +10,18 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const b = await req.json();
     const student = await prisma.student.findUnique({ where: { id: params.id } });
     if (!student) return fail("Student not found.", 404);
+    const sharedParent = await prisma.parent.findFirst({ where: { parentCode: "PARENT" } });
+    const normalizedParentId =
+      b.parentId === ""
+        ? sharedParent?.id || null
+        : b.parentId ?? undefined;
 
     await prisma.student.update({
       where: { id: params.id },
       data: {
         rollNo: b.rollNo ?? undefined,
         classId: b.classId === "" ? null : b.classId ?? undefined,
-        parentId: b.parentId === "" ? null : b.parentId ?? undefined,
+        parentId: normalizedParentId,
         phone: b.phone ?? undefined,
         dob: b.dob ?? undefined,
         address: b.address ?? undefined,

@@ -74,7 +74,7 @@ export default function LoginForm({
               placeholder={identifierPlaceholder}
               value={identifier}
               onChange={(e) => setIdentifier(e.target.value)}
-              autoComplete="username"
+              autoComplete="off"
             />
           </div>
           <div>

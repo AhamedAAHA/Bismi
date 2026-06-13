@@ -111,7 +111,7 @@ export default function ClassesPage() {
         <div className="space-y-4">
           <Field label="Subject Name *"><input className="input" value={subForm.name || ""} onChange={(e) => setSubForm({ ...subForm, name: e.target.value })} /></Field>
           <Field label="Code"><input className="input" value={subForm.code || ""} onChange={(e) => setSubForm({ ...subForm, code: e.target.value })} /></Field>
-          <Field label="Teacher"><input className="input" value={subForm.teacher || ""} onChange={(e) => setSubForm({ ...subForm, teacher: e.target.value })} /></Field>
+          <Field label="Teachers (comma separated)"><input className="input" value={subForm.teacher || ""} onChange={(e) => setSubForm({ ...subForm, teacher: e.target.value })} placeholder="Ms. Nisha, Mr. Ravi" /></Field>
           <Field label="Class">
             <select className="select" value={subForm.classId || ""} onChange={(e) => setSubForm({ ...subForm, classId: e.target.value })}>
               <option value="">All classes</option>

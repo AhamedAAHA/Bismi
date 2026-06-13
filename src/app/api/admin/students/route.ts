@@ -33,13 +33,19 @@ export async function POST(req: NextRequest) {
         role: "STUDENT",
       },
     });
+    const sharedParent = !b.parentId
+      ? await prisma.parent.findFirst({
+          where: { parentCode: "PARENT" },
+        })
+      : null;
+
     const student = await prisma.student.create({
       data: {
         userId: user.id,
         studentCode: b.studentCode.toUpperCase(),
         rollNo: b.rollNo || null,
         classId: b.classId || null,
-        parentId: b.parentId || null,
+        parentId: b.parentId || sharedParent?.id || null,
         phone: b.phone || null,
         dob: b.dob || null,
         address: b.address || null,

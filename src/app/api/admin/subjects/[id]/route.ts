@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { ok, guard } from "@/lib/http";
+import { normalizeNameList } from "@/lib/utils";
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const { error } = await guard("ADMIN");
@@ -11,7 +12,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     data: {
       name: b.name,
       code: b.code || null,
-      teacher: b.teacher || null,
+      teacher: normalizeNameList(b.teacher),
       classId: b.classId || null,
     },
   });

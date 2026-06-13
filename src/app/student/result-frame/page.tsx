@@ -123,7 +123,7 @@ export default function ResultFramePage() {
                   <GraduationCap size={26} />
                 </div>
                 <div>
-                  <p style={{ margin: 0, fontWeight: 800, fontSize: 17, letterSpacing: "0.02em" }}>3D Education Hub</p>
+                  <p style={{ margin: 0, fontWeight: 800, fontSize: 17, letterSpacing: "0.02em" }}>Bismi Portal</p>
                   <p style={{ margin: 0, fontSize: 11, opacity: 0.95 }}>Official Achievement Certificate</p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ export default function ResultFramePage() {
                   <p style={{ margin: "6px 0", fontSize: 38, fontWeight: 900, color: "#b45309" }}>{selected.score} / {selected.total}</p>
                   <p style={{ margin: 0, fontSize: 16, fontWeight: 800, color: selected.percentage >= 40 ? "#059669" : "#dc2626" }}>{selected.percentage}% Achievement</p>
                 </div>
-                <p style={{ margin: 0, fontSize: 11, color: "#78716c" }}>Certified by 3D Education Hub</p>
+                <p style={{ margin: 0, fontSize: 11, color: "#78716c" }}>Certified by Bismi Portal</p>
               </div>
 
               <div style={{ padding: "14px", background: "linear-gradient(180deg,#fef3c7,#fde68a)", textAlign: "center", position: "relative", zIndex: 1 }}>

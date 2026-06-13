@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useFetch } from "@/lib/useFetch";
 import PageHeader from "@/components/dashboard/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -7,21 +8,29 @@ import { Loading, ErrorState, EmptyState } from "@/components/ui/States";
 import { StatusBadge } from "@/components/ui/Badge";
 import { formatDate } from "@/lib/utils";
 import { BookOpen, Clock } from "lucide-react";
+import ClassFilter from "@/components/parent/ClassFilter";
 
 export default function ParentHomework() {
   const { data, loading, error } = useFetch<any>("/api/parent/data?type=homework");
+  const [selectedClass, setSelectedClass] = useState("ALL");
   if (loading) return <Loading />;
   if (error || !data) return <ErrorState message={error || "Failed to load"} />;
+  const classOptions = ["ALL", ...(data.classGroups || []).map((g: any) => g.className)];
+  const visibleGroups =
+    selectedClass === "ALL"
+      ? data.classGroups
+      : data.classGroups.filter((g: any) => g.className === selectedClass);
 
   return (
     <div>
-      <PageHeader title="Homework Status" subtitle="All linked students grouped class by class." />
+      <PageHeader title="Homework Status" subtitle="Select a grade to view homework for all students." />
+      <ClassFilter classes={classOptions} selectedClass={selectedClass} onChange={setSelectedClass} />
 
-      {data.classGroups.length === 0 ? (
+      {visibleGroups.length === 0 ? (
         <Card><EmptyState icon={BookOpen} title="No students linked" /></Card>
       ) : (
         <div className="space-y-4">
-          {data.classGroups.map((group: any) => (
+          {visibleGroups.map((group: any) => (
             <section key={group.className} className="space-y-3">
               <h2 className="text-sm font-bold uppercase text-muted">{group.className}</h2>
               {group.children.map((child: any) => (
