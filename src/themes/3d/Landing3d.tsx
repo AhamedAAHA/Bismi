@@ -1,0 +1,211 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import Logo from "@/components/Logo";
+import ThemeToggle from "@/components/ThemeToggle";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Brain,
+  CalendarDays,
+  ClipboardCheck,
+  FileText,
+  GraduationCap,
+  Mail,
+  QrCode,
+  ShieldCheck,
+  Sparkles,
+  Trophy,
+  Users,
+} from "lucide-react";
+
+const GlobalScene = dynamic(() => import("@/components/3d/GlobalScene"), { ssr: false });
+
+const nav = [
+  { href: "#platform", label: "Platform" },
+  { href: "#services", label: "Services" },
+  { href: "#portals", label: "Portals" },
+];
+
+const features = [
+  {
+    icon: ClipboardCheck,
+    title: "Scheduled",
+    desc: "Attendance, class plans and daily operations.",
+    tone: "#54f4ff",
+    titleTone: "rgba(84, 244, 255, 0.75)",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Verified",
+    desc: "Tests, marks, homework and student progress.",
+    tone: "#9a8cff",
+    titleTone: "rgba(154, 140, 255, 0.75)",
+  },
+  {
+    icon: FileText,
+    title: "Reported",
+    desc: "Receipts, emails, exports and parent updates.",
+    tone: "#6dffb0",
+    titleTone: "rgba(109, 255, 176, 0.75)",
+  },
+];
+
+const services = [
+  { icon: QrCode, title: "Daily QR Code", desc: "Fast student check-in and check-out with secure daily codes.", color: "#54f4ff" },
+  { icon: Brain, title: "AI Study Assistant", desc: "Students can ask for explanations, MCQs and summaries.", color: "#9a8cff" },
+  { icon: Trophy, title: "Leaderboard", desc: "Rank by marks, attendance and homework completion.", color: "#f7c768" },
+  { icon: CalendarDays, title: "Class Schedule", desc: "Today and upcoming classes with teacher assignments.", color: "#6dffb0" },
+  { icon: Mail, title: "Parent Emails", desc: "Automatic updates for absences, marks and announcements.", color: "#ff8ad4" },
+];
+
+const portals = [
+  { href: "/login/admin", icon: ShieldCheck, title: "Admin OS", desc: "Manage students, classes, fees, tests and reports." },
+  { href: "/login/student", icon: GraduationCap, title: "Student OS", desc: "Attend, learn, submit work and track progress." },
+  { href: "/login/parent", icon: Users, title: "Parent OS", desc: "Follow children, marks, fees and notifications." },
+];
+
+export default function Landing3d() {
+  return (
+    <div className="relative min-h-screen overflow-x-hidden">
+      <header className="relative z-20 mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5">
+        <Logo variant="3d" />
+        <nav className="hidden items-center gap-8 text-sm font-semibold text-[var(--muted)] md:flex">
+          {nav.map((item) => (
+            <Link key={item.href} href={item.href} className="transition-colors hover:text-[#54f4ff]">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Link href="/login" className="btn btn-primary btn-sm">
+            Launch OS
+          </Link>
+        </div>
+      </header>
+
+      <section id="platform" className="relative flex min-h-[calc(100vh-80px)] flex-col overflow-hidden">
+        <GlobalScene />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "100px",
+            background: "linear-gradient(to bottom, transparent, #050814)",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          className="relative mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-0 px-5 lg:grid-cols-2"
+          style={{ zIndex: 10 }}
+        >
+          <div className="flex flex-col items-start py-16 text-left">
+            <span className="badge badge-blue mb-6 inline-flex gap-1.5 border border-[#54f4ff]/20 bg-[#54f4ff]/10 px-3 py-1.5 text-xs font-bold tracking-wide text-[#54f4ff]">
+              <Sparkles className="h-3.5 w-3.5" />
+              Tuition management command center
+            </span>
+            <h1 className="text-pretty text-5xl font-black leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[4rem]">
+              <span className="bg-gradient-to-r from-[#54f4ff] via-[#9a8cff] to-[#ff8ad4] bg-clip-text text-transparent">
+                Run attendance,
+              </span>{" "}
+              <span className="text-white">tests, fees and</span>{" "}
+              <span className="bg-gradient-to-r from-[#6dffb0] via-[#54f4ff] to-[#9a8cff] bg-clip-text text-transparent">
+                parent updates
+              </span>{" "}
+              <span className="text-white">from one workspace.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#cad7ef] sm:text-xl">
+              Bismi gives tuition centers a polished operating system for daily classes, student progress, homework, receipts and parent communication.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/login" className="btn btn-primary">
+                Launch workspace <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="#services" className="btn border border-[#9a8cff]/30 bg-[#9a8cff]/10 text-[#efe9ff] hover:bg-[#9a8cff]/20">
+                View services
+              </Link>
+            </div>
+          </div>
+          <div className="hidden lg:block" aria-hidden="true" />
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#050814] py-10">
+        <div className="relative z-10 mx-auto max-w-6xl px-5">
+          <div className="grid gap-4 sm:grid-cols-3">
+            {features.map((f) => (
+              <div key={f.title} className="glass card p-5">
+                <f.icon className="h-6 w-6" style={{ color: f.tone }} />
+                <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.22em]" style={{ color: f.titleTone }}>
+                  {f.title}
+                </p>
+                <p className="mt-2 text-lg font-extrabold leading-snug text-white">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="relative overflow-hidden bg-[#040912] py-16">
+        <div className="relative z-10 mx-auto max-w-6xl px-5">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#54f4ff]">Services</p>
+              <h2 className="mt-2 text-4xl font-black tracking-tight text-white sm:text-5xl">Everything runs from one console</h2>
+            </div>
+            <Link href="/login" className="btn btn-ghost shrink-0 text-sm">
+              Open portals <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {services.map((s) => (
+              <div key={s.title} className="glass card p-5">
+                <div
+                  className="flex h-12 w-12 items-center justify-center rounded-2xl border"
+                  style={{ borderColor: `${s.color}44`, backgroundColor: `${s.color}1f`, color: s.color }}
+                >
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-lg font-extrabold text-white">{s.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-[#b3c0d9]">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="portals" className="relative overflow-hidden bg-[#050814] py-16">
+        <div className="relative z-10 mx-auto max-w-6xl px-5">
+          <div className="mb-8 text-center">
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#54f4ff]">Portals</p>
+            <h2 className="mt-2 text-4xl font-black tracking-tight text-white sm:text-5xl">Pick your role</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {portals.map((p) => (
+              <Link
+                key={p.href}
+                href={p.href}
+                className="glass-strong card group flex flex-col p-6 transition-all hover:border-[#54f4ff]/30"
+              >
+                <div className="mb-6 flex items-center justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#54f4ff] to-[#2f8fff] text-[#03111f] shadow-[0_0_20px_rgba(84,244,255,0.35)]">
+                    <p.icon className="h-6 w-6" />
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-[var(--muted)] transition-all group-hover:translate-x-1 group-hover:text-[#54f4ff]" />
+                </div>
+                <h3 className="text-2xl font-black text-white">{p.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-[#b3c0d9]">{p.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

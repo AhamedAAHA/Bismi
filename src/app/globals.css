@@ -593,3 +593,144 @@ table.data tbody tr {
   0%, 100% { height: 8px; opacity: 0.5; }
   50% { height: 24px; opacity: 1; }
 }
+
+/* ---------- Classic (Bismi College) UI theme ---------- */
+html[data-ui="classic"] {
+  --classic-bg: #f2f3f4;
+  --classic-text: #1b2631;
+  --classic-muted: #4a5568;
+  --classic-border: #d8dee6;
+  --classic-panel: #ffffff;
+  --bg: #f2f3f4;
+  --bg-soft: #ffffff;
+  --text: #1b2631;
+  --muted: #4a5568;
+  --border: #d8dee6;
+  --glass-edge: #e8edf2;
+  --glass-shadow: rgba(27, 38, 49, 0.08);
+  --panel: #ffffff;
+  --panel-strong: #ffffff;
+  --scanline: transparent;
+}
+
+html[data-ui="classic"],
+html[data-ui="classic"] body {
+  background: linear-gradient(180deg, #f7f9fb 0%, #eef2f6 100%);
+}
+
+html[data-ui="classic"] body::before,
+html[data-ui="classic"] body::after {
+  display: none;
+}
+
+html[data-ui="classic"] .btn-primary {
+  background: #1b2631;
+  color: #fff;
+  box-shadow: 0 8px 24px -10px rgba(27, 38, 49, 0.45);
+}
+html[data-ui="classic"] .btn-primary:hover:not(:disabled) {
+  background: #243447;
+  box-shadow: 0 10px 28px -8px rgba(27, 38, 49, 0.5);
+}
+
+html[data-ui="classic"] .glass,
+html[data-ui="classic"] .glass-strong {
+  background: #fff;
+  border: 1px solid var(--classic-border);
+  box-shadow: 0 8px 30px rgba(27, 38, 49, 0.06);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-ui="classic"] .dashboard-main .glass,
+html[data-ui="classic"] .dashboard-main .glass-strong {
+  background: #fff;
+  border: 1px solid var(--classic-border);
+  box-shadow: 0 8px 24px rgba(27, 38, 49, 0.05);
+}
+
+html[data-ui="classic"] .dashboard-main table.data tbody tr:hover {
+  background: #f7f9fb;
+}
+
+html[data-ui="classic"] .input:focus,
+html[data-ui="classic"] .select:focus,
+html[data-ui="classic"] .textarea:focus {
+  border-color: #1b2631;
+  box-shadow: 0 0 0 3px rgba(27, 38, 49, 0.1);
+}
+
+.classic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  min-height: 42px;
+  padding: 10px 20px;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+.classic-btn-primary {
+  background: #1b2631;
+  color: #fff;
+}
+.classic-btn-primary:hover {
+  background: #243447;
+}
+.classic-btn-outline {
+  background: #fff;
+  color: #1b2631;
+  border: 1.5px solid #1b2631;
+}
+.classic-btn-outline:hover {
+  background: #f7f9fb;
+}
+.classic-btn-light {
+  background: #fff;
+  color: #1b2631;
+}
+.classic-btn-light:hover {
+  background: #f7f9fb;
+}
+.classic-btn-outline-light {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+}
+.classic-btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.classic-portal-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--classic-border);
+  border-radius: 16px;
+  background: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(27, 38, 49, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.classic-portal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(27, 38, 49, 0.1);
+}
+
+.classic-login-card {
+  border-radius: 20px;
+  border: 1px solid var(--classic-border);
+  background: #fff;
+  box-shadow: 0 16px 48px rgba(27, 38, 49, 0.08);
+}
+
+.classic-dashboard {
+  background: linear-gradient(180deg, #f7f9fb 0%, #eef2f6 100%);
+}
+
+.classic-sidebar {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
