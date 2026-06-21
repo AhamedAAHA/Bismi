@@ -24,11 +24,12 @@ export async function POST(req: NextRequest) {
     if (exists) return fail("Student code already exists.");
 
     const password = await hashPassword(b.password || "1234");
+    const code = b.studentCode.toUpperCase();
     const user = await prisma.user.create({
       data: {
         name: b.name,
-        code: b.studentCode.toUpperCase(),
-        email: b.email || null,
+        code,
+        email: b.email || `${code.toLowerCase()}@students.bismi.local`,
         password,
         role: "STUDENT",
       },

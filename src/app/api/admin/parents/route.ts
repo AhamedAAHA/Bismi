@@ -23,11 +23,12 @@ export async function POST(req: NextRequest) {
     if (exists) return fail("Parent code already exists.");
 
     const password = await hashPassword(b.password || "1234");
+    const code = b.parentCode.toUpperCase();
     const user = await prisma.user.create({
       data: {
         name: b.name,
-        code: b.parentCode.toUpperCase(),
-        email: b.email || null,
+        code,
+        email: b.email || `${code.toLowerCase()}@parents.bismi.local`,
         password,
         role: "PARENT",
       },
