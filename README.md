@@ -1,6 +1,6 @@
 # 3D Education Hub - Smart Tuition Management System
 
-A modern full-stack tuition management system with **Admin**, **Student**, and **Parent** portals. Built with Next.js (App Router), TypeScript, Tailwind CSS, Prisma, Supabase PostgreSQL, and email notifications.
+A modern full-stack tuition management system with **Admin**, **Student**, and **Parent** portals. Built with Next.js (App Router), TypeScript, Tailwind CSS, Prisma, MongoDB, and email notifications.
 
 > Developed by **AAHA** · Contact: **hubaibahamedaaha@gmail.com**
 
@@ -18,38 +18,50 @@ A modern full-stack tuition management system with **Admin**, **Student**, and *
 ## Tech Stack
 
 - **Frontend/Backend**: Next.js 14 (App Router) + TypeScript + Tailwind CSS
-- **Database**: Prisma ORM + **Supabase PostgreSQL**
+- **Database**: Prisma ORM + **MongoDB**
 - **Auth**: `jose` (JWT) + `bcryptjs`
 - **Email**: `nodemailer`
 - **Charts**: `recharts` · **Animations**: `framer-motion` · **Icons**: `lucide-react` · **QR**: `qrcode` · **Result image export**: `html-to-image`
 
-## Getting Started (Supabase)
+## Getting Started (MongoDB)
 
 ```bash
 # 1. Install dependencies
 npm install
 
-# 2. Create .env from template and fill Supabase values
+# 2. Start MongoDB (local) — Prisma requires a replica set even for local dev:
+#    sudo systemctl start mongod
+#    mongosh --eval 'rs.initiate({_id:"rs0", members:[{_id:0, host:"127.0.0.1:27017"}]})'
+#    Or use MongoDB Atlas (replica set included) and set DATABASE_URL in .env
+
+# 3. Create .env from template
 cp .env.example .env
 
-# 3. Push schema + seed base data
+# 4. Push schema + seed demo data
 npm run db:push
 npm run db:seed
 
-# 4. Run the dev server
+# 5. Run the dev server
 npm run dev
 ```
 
 Open http://localhost:3000
 
-Seed creates base accounts and core settings. No sample students/marks/tests are inserted.
-Default parent access is a shared account code `PARENT` (password configurable via `SEED_PARENT_PASSWORD`).
+Seed creates demo classes, students, tests, attendance, fees, homework, and more.
+
+### Demo logins
+
+| Role    | Identifier        | Password   |
+|---------|-------------------|------------|
+| Admin   | `admin@bismi.edu` | `admin123` |
+| Parent  | `PARENT`          | `parent123` |
+| Parent  | `PAR001`          | `parent123` |
+| Student | `STU001`–`STU005` | `student123` |
 
 ## Environment
 
 ```
-DATABASE_URL="<Supabase pooled URL (port 6543)>"
-DIRECT_URL="<Supabase direct URL (port 5432)>"
+DATABASE_URL="mongodb://127.0.0.1:27017/bismi"
 JWT_SECRET="<long-random-string>"
 SMTP_HOST=""                      # leave blank to log emails instead of sending
 SMTP_PORT="587"
@@ -67,7 +79,7 @@ Fill in `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (e.g. Gmail App Passw
 1. Push this repo to GitHub/GitLab/Bitbucket.
 2. Import the repo in Vercel.
 3. In Vercel Project Settings -> Environment Variables, add:
-   `DATABASE_URL`, `DIRECT_URL`, `JWT_SECRET`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM`, any required `AIML_*` variables.
+   `DATABASE_URL`, `JWT_SECRET`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM`, any required `AIML_*` variables.
 4. Deploy once.
 5. Run schema and seed against production database:
    `npx prisma db push`
