@@ -70,7 +70,7 @@ export default function Landing3d() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <header className="relative z-20 mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5">
-        <Logo variant="3d" />
+        <Logo />
         <nav className="hidden items-center gap-8 text-sm font-semibold text-[var(--muted)] md:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className="transition-colors hover:text-[#54f4ff]">
